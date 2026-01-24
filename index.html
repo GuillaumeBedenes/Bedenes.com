@@ -4,8 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bedenes.io</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <h1>Hello World</h1>
+    <canvas id="particles-canvas"></canvas>
+    
+    <div class="container">
+        <header class="profile-header">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+            <a href="documents/cv.pdf" download="CV_BEDENES_Guillaume.pdf" class="cv-btn" data-i18n="cv-button">CV</a>
+            <img src="images/Profile.jpg" alt="Profil" class="profile-image" />
+            <div class="profile-info">
+                <h1 data-i18n="name">BEDENES Guillaume</h1>
+                <p class="email"><a href="mailto:guillaume.bedenes@epitech.eu" data-i18n="email">guillaume.bedenes@epitech.eu</a></p>
+                <p class="bio" data-i18n="bio">Ingénieur logiciel<br>Développement de logiciels, de jeux et de systèmes complexes.</p>
+            </div>
+        </header>
+        
+        <main class="content-area">
+            <div class="tabs">
+                <button class="tab active" data-tab="competences" data-i18n="tab-skills">Compétences</button>
+                <button class="tab" data-tab="timeline" data-i18n="tab-timeline">Project timeline</button>
+            </div>
+            
+            <div class="tab-content">
+                <div class="tab-pane active" id="competences">
+                    <div class="terminal-window">
+                        <pre class="terminal-text" data-i18n="skills-content">
+$ cat competences.txt
+Loading...
+                        </pre>
+                    </div>
+                </div>
+                
+                <div class="tab-pane" id="timeline">
+                    <div class="terminal-window">
+                        <pre class="terminal-text" data-i18n="timeline-content">
+$ cat timeline.txt
+Loading...
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
