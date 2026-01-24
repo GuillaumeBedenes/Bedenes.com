@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
     background-color: #000000;
     color: #00ff00;
     overflow-x: hidden;
@@ -46,7 +46,7 @@ body {
     color: #666666;
     border: 1px solid #ffffff;
     padding: 8px 15px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
     font-size: 0.9em;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -74,7 +74,7 @@ body {
     margin-bottom: 30px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
     box-shadow: 
         0 0 10px rgba(255, 255, 255, 0.2),
         inset 0 0 10px rgba(255, 255, 255, 0.05);
@@ -139,7 +139,7 @@ body {
     color: #00ff00;
     border: 1px solid #ffffff;
     padding: 8px 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
     font-size: 0.9em;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -159,8 +159,10 @@ body {
 
 .profile-info .bio {
     color: #cccccc;
-    font-size: 0.95em;
+    font-size: 0.9em;
     line-height: 1.5;
+    word-spacing: -0.5px;
+    letter-spacing: -0.2px;
 }
 
 /* Zone de contenu */
@@ -186,7 +188,7 @@ body {
     border: none;
     border-right: 1px solid #ffffff;
     padding: 15px 25px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -251,7 +253,7 @@ body {
 
 .terminal-text {
     color: #00ff00;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
     font-size: 1em;
     line-height: 1.6;
     white-space: pre-wrap;
@@ -301,6 +303,13 @@ body {
     .profile-image {
         width: 120px;
         height: 120px;
+    }
+    
+    .cv-btn {
+        top: 10px;
+        left: 10px;
+        bottom: auto;
+        right: auto;
     }
     
     .tabs {
