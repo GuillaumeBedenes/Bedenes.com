@@ -133,10 +133,89 @@
                 
                 <div class="tab-pane" id="timeline">
                     <div class="terminal-window">
-                        <pre class="terminal-text" data-i18n="timeline-content">
-$ cat timeline.txt
-Loading...
-                        </pre>
+                        <div class="timeline-content">
+                            <pre class="terminal-text" data-i18n="timeline-command">$ cat timeline.txt</pre>
+                            <div class="timeline-wrapper">
+                                <div class="timeline-container" id="timeline-container-fr">
+                                    <div class="timeline-item" data-year="2008" data-title="Premiers pas en game design" data-desc="FPS Creator, RPG Maker" data-tech="FPS Creator, RPG Maker">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2008</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2015" data-title="Premiers pas en programmation" data-desc="HTML, CSS, GameMaker, Construct 2, Java (mods Minecraft)" data-tech="HTML, CSS, Construct 2, Java">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2015</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2016-2017" data-title="Premiers jeux sans moteur complet" data-desc="SFML, Phaser — prototype de roguelike (Rebirth)" data-tech="SFML, Phaser, C++, SDL, CSFML, C">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2016-2017</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2018-2021" data-title="Apprentissage et montée en compétence sur Unity" data-desc="Génération procédurale (terrains, biomes, mondes), prototypes Unity, Devastation in Eden, VFX et effets visuels" data-tech="Unity, C#">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2018-2021</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2022-2023" data-title="Professionnalisation sur Unity (cadre professionnel)" data-desc="Simulation sous Unity pour Airbus (Sopra Steria), conception d'outils, design patterns avancés, architecture complexe" data-tech="Unity, C#">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2022-2023</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2023-2024" data-title="Prototypes sur temps libre (multi-engines)" data-desc="Prototypes de génération procédurale 2D/3D sous Unity, exploration de Godot et GameMaker" data-tech="Unity, Godot, GameMaker, C#">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2023-2024</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2025-2026" data-title="Développement de moteur maison" data-desc="Moteur maison : MonoGame puis C# pur" data-tech="MonoGame, C#">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2025-2026</div>
+                                    </div>
+                                    <div class="timeline-details-card" id="timeline-details-fr">
+                                        <div class="timeline-details-content">
+                                            <div class="timeline-details-year" id="details-year-fr"></div>
+                                            <h3 class="timeline-details-title" id="details-title-fr"></h3>
+                                            <p class="timeline-details-desc" id="details-desc-fr"></p>
+                                            <div class="timeline-details-tech" id="details-tech-fr"></div>
+                                            <div class="timeline-media" id="details-media-fr"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timeline-container" id="timeline-container-en" style="display: none;">
+                                    <div class="timeline-item" data-year="2008" data-title="First steps in game design" data-desc="FPS Creator, RPG Maker" data-tech="FPS Creator, RPG Maker">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2008</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2015" data-title="First steps in programming" data-desc="HTML, CSS, GameMaker, Construct 2, Java (Minecraft mods)" data-tech="HTML, CSS, Construct 2, Java">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2015</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2016-2017" data-title="First games without full engine" data-desc="SFML, Phaser — roguelike prototype (Rebirth)" data-tech="SFML, Phaser, C++, SDL, CSFML, C">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2016-2017</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2018-2021" data-title="Learning and skill development on Unity" data-desc="Procedural generation (terrains, biomes, worlds), Unity prototypes, Devastation in Eden, VFX and visual effects" data-tech="Unity, C#">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2018-2021</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2022-2023" data-title="Professionalization on Unity (professional context)" data-desc="Unity simulation for Airbus (Sopra Steria), tool design, advanced design patterns, complex architecture" data-tech="Unity, C#">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2022-2023</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2023-2024" data-title="Prototypes in free time (multi-engines)" data-desc="2D/3D procedural generation prototypes on Unity, exploration of Godot and GameMaker" data-tech="Unity, Godot, GameMaker, C#">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2023-2024</div>
+                                    </div>
+                                    <div class="timeline-item" data-year="2025-2026" data-title="Home engine development" data-desc="Home engine: MonoGame then pure C#" data-tech="MonoGame, C#">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-label">2025-2026</div>
+                                    </div>
+                                    <div class="timeline-details-card" id="timeline-details-en">
+                                        <div class="timeline-details-content">
+                                            <div class="timeline-details-year" id="details-year-en"></div>
+                                            <h3 class="timeline-details-title" id="details-title-en"></h3>
+                                            <p class="timeline-details-desc" id="details-desc-en"></p>
+                                            <div class="timeline-details-tech" id="details-tech-en"></div>
+                                            <div class="timeline-media" id="details-media-en"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

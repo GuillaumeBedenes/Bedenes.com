@@ -8,7 +8,21 @@ const translations = {
         'tab-skills': 'Compétences',
         'tab-timeline': 'Project timeline',
         'skills-command': '$ cat competences.txt',
-        'timeline-content': '$ cat timeline.txt\nLoading...'
+        'timeline-command': '$ cat timeline.txt',
+        'timeline-2008-title': 'Premiers pas en game design',
+        'timeline-2008-desc': 'FPS Creator, RPG Maker',
+        'timeline-2015-title': 'Premiers pas en programmation',
+        'timeline-2015-desc': 'HTML, CSS, GameMaker, Construct 2, Java (mods Minecraft)',
+        'timeline-2016-title': 'Premiers jeux sans moteur complet',
+        'timeline-2016-desc': 'SFML, Phaser — prototype de roguelike (Rebirth)',
+        'timeline-2018-title': 'Apprentissage et montée en compétence sur Unity',
+        'timeline-2018-desc': 'Génération procédurale (terrains, biomes, mondes), prototypes Unity, Devastation in Eden, VFX et effets visuels',
+        'timeline-2022-title': 'Professionnalisation sur Unity (cadre professionnel)',
+        'timeline-2022-desc': 'Simulation sous Unity pour Airbus (Sopra Steria), conception d\'outils, design patterns avancés, architecture complexe',
+        'timeline-2023-title': 'Prototypes sur temps libre (multi-engines)',
+        'timeline-2023-desc': 'Prototypes de génération procédurale 2D/3D sous Unity, exploration de Godot et GameMaker',
+        'timeline-2025-title': 'Développement de moteur maison',
+        'timeline-2025-desc': 'Moteur maison : MonoGame puis C# pur'
     },
     en: {
         'name': 'BEDENES Guillaume',
@@ -18,7 +32,21 @@ const translations = {
         'tab-skills': 'Skills',
         'tab-timeline': 'Project timeline',
         'skills-command': '$ cat skills.txt',
-        'timeline-content': '$ cat timeline.txt\nLoading...'
+        'timeline-command': '$ cat timeline.txt',
+        'timeline-2008-title': 'First steps in game design',
+        'timeline-2008-desc': 'FPS Creator, RPG Maker',
+        'timeline-2015-title': 'First steps in programming',
+        'timeline-2015-desc': 'HTML, CSS, GameMaker, Construct 2, Java (Minecraft mods)',
+        'timeline-2016-title': 'First games without full engine',
+        'timeline-2016-desc': 'SFML, Phaser — roguelike prototype (Rebirth)',
+        'timeline-2018-title': 'Learning and skill development on Unity',
+        'timeline-2018-desc': 'Procedural generation (terrains, biomes, worlds), Unity prototypes, Devastation in Eden, VFX and visual effects',
+        'timeline-2022-title': 'Professionalization on Unity (professional context)',
+        'timeline-2022-desc': 'Unity simulation for Airbus (Sopra Steria), tool design, advanced design patterns, complex architecture',
+        'timeline-2023-title': 'Prototypes in free time (multi-engines)',
+        'timeline-2023-desc': '2D/3D procedural generation prototypes on Unity, exploration of Godot and GameMaker',
+        'timeline-2025-title': 'Home engine development',
+        'timeline-2025-desc': 'Home engine: MonoGame then pure C#'
     }
 };
 
@@ -37,6 +65,9 @@ function translatePage(lang) {
                 element.innerHTML = translations[lang][key].replace(/\n/g, '<br>');
             } else if (element.classList.contains('skills-content')) {
                 // Ne pas remplacer le contenu HTML des compétences
+                return;
+            } else if (element.closest('.timeline-container')) {
+                // Pour la timeline, on gère l'affichage via les containers
                 return;
             } else {
                 element.textContent = translations[lang][key];
@@ -82,6 +113,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     skillsFr.style.display = 'none';
                     skillsEn.style.display = 'flex';
+                }
+            }
+            
+            // Gérer l'affichage de la timeline selon la langue
+            const timelineFr = document.getElementById('timeline-container-fr');
+            const timelineEn = document.getElementById('timeline-container-en');
+            if (timelineFr && timelineEn) {
+                if (lang === 'fr') {
+                    timelineFr.style.display = 'flex';
+                    timelineEn.style.display = 'none';
+                } else {
+                    timelineEn.style.display = 'flex';
+                    timelineFr.style.display = 'none';
                 }
             }
             
@@ -161,7 +205,61 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialiser les particules
     initParticles();
+    
+    // Initialiser la timeline
+    initTimeline();
 });
+
+// Fonction pour initialiser la timeline
+function initTimeline() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    timelineItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Retirer la classe active de tous les items du même container
+            const activeContainer = this.closest('.timeline-container');
+            const allItems = activeContainer.querySelectorAll('.timeline-item');
+            allItems.forEach(i => i.classList.remove('active'));
+            
+            // Ajouter la classe active à l'item cliqué
+            this.classList.add('active');
+            
+            const year = this.getAttribute('data-year');
+            const title = this.getAttribute('data-title');
+            const desc = this.getAttribute('data-desc');
+            const tech = this.getAttribute('data-tech');
+            
+            const isFr = activeContainer.id === 'timeline-container-fr';
+            
+            const detailsCard = isFr ? document.getElementById('timeline-details-fr') : document.getElementById('timeline-details-en');
+            const detailsYear = isFr ? document.getElementById('details-year-fr') : document.getElementById('details-year-en');
+            const detailsTitle = isFr ? document.getElementById('details-title-fr') : document.getElementById('details-title-en');
+            const detailsDesc = isFr ? document.getElementById('details-desc-fr') : document.getElementById('details-desc-en');
+            const detailsTech = isFr ? document.getElementById('details-tech-fr') : document.getElementById('details-tech-en');
+            const detailsMedia = isFr ? document.getElementById('details-media-fr') : document.getElementById('details-media-en');
+            
+            if (detailsCard && detailsYear && detailsTitle && detailsDesc) {
+                detailsYear.textContent = year;
+                detailsTitle.textContent = title;
+                detailsDesc.textContent = desc;
+                
+                // Afficher les technologies
+                if (detailsTech && tech) {
+                    const techArray = tech.split(',').map(t => t.trim());
+                    detailsTech.innerHTML = '<div class="timeline-tech-label">Technologies :</div><div class="timeline-tech-tags">' + 
+                        techArray.map(t => `<span class="timeline-tech-tag">${t}</span>`).join('') + 
+                        '</div>';
+                } else if (detailsTech) {
+                    detailsTech.innerHTML = '';
+                }
+                
+                if (detailsMedia) detailsMedia.innerHTML = '';
+                
+                detailsCard.classList.add('active');
+            }
+        });
+    });
+}
 
 // Système de particules Canvas
 function initParticles() {
