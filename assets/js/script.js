@@ -7,7 +7,7 @@ const translations = {
         'cv-button': 'CV',
         'tab-skills': 'Compétences',
         'tab-timeline': 'Project timeline',
-        'skills-content': '$ cat competences.txt\nLoading...',
+        'skills-command': '$ cat competences.txt',
         'timeline-content': '$ cat timeline.txt\nLoading...'
     },
     en: {
@@ -17,7 +17,7 @@ const translations = {
         'cv-button': 'CV',
         'tab-skills': 'Skills',
         'tab-timeline': 'Project timeline',
-        'skills-content': '$ cat skills.txt\nLoading...',
+        'skills-command': '$ cat skills.txt',
         'timeline-content': '$ cat timeline.txt\nLoading...'
     }
 };
@@ -35,6 +35,9 @@ function translatePage(lang) {
             } else if (element.classList.contains('bio')) {
                 // Pour la bio, remplacer \n par <br>
                 element.innerHTML = translations[lang][key].replace(/\n/g, '<br>');
+            } else if (element.classList.contains('skills-content')) {
+                // Ne pas remplacer le contenu HTML des compétences
+                return;
             } else {
                 element.textContent = translations[lang][key];
             }
@@ -68,8 +71,75 @@ document.addEventListener('DOMContentLoaded', function() {
             currentLang = lang;
             localStorage.setItem('language', lang);
             translatePage(lang);
+            
+            // Gérer l'affichage des compétences selon la langue
+            const skillsFr = document.getElementById('skills-container-fr');
+            const skillsEn = document.getElementById('skills-container-en');
+            if (skillsFr && skillsEn) {
+                if (lang === 'fr') {
+                    skillsFr.style.display = 'flex';
+                    skillsEn.style.display = 'none';
+                } else {
+                    skillsFr.style.display = 'none';
+                    skillsEn.style.display = 'flex';
+                }
+            }
+            
+            // Mettre à jour les tooltips
+            if (typeof addLevelTooltips === 'function') {
+                addLevelTooltips(lang);
+            }
         });
     });
+    
+    // Initialiser l'affichage des compétences selon la langue
+    const skillsFr = document.getElementById('skills-container-fr');
+    const skillsEn = document.getElementById('skills-container-en');
+    if (skillsFr && skillsEn) {
+        if (currentLang === 'fr') {
+            skillsFr.style.display = 'flex';
+            skillsEn.style.display = 'none';
+        } else {
+            skillsFr.style.display = 'none';
+            skillsEn.style.display = 'flex';
+        }
+    }
+    
+    // Ajouter les tooltips pour les niveaux de compétences
+    const levelTooltips = {
+        'level-1': {
+            fr: 'Base acquise - Je connais les concepts, je l\'ai pratiqué, je peux lire / reprendre du code, mais ce n\'est pas mon outil principal aujourd\'hui.',
+            en: 'Basic level - I know the concepts, I have practiced it, I can read / take over code, but it is not my main tool today.'
+        },
+        'level-2': {
+            fr: 'Bon niveau - Utilisé régulièrement, à l\'aise, autonome sur des sujets non triviaux.',
+            en: 'Good level - Used regularly, comfortable, autonomous on non-trivial topics.'
+        },
+        'level-3': {
+            fr: 'Maîtrise professionnelle - Utilisé en production, sur des projets réels, avec responsabilité technique et impact long terme.',
+            en: 'Professional mastery - Used in production, on real projects, with technical responsibility and long-term impact.'
+        }
+    };
+    
+    function addLevelTooltips(lang) {
+        const levelElements = document.querySelectorAll('.skill-level.level-1, .skill-level.level-2, .skill-level.level-3');
+        levelElements.forEach(element => {
+            const levelClass = element.classList.contains('level-1') ? 'level-1' : 
+                             element.classList.contains('level-2') ? 'level-2' : 'level-3';
+            element.setAttribute('title', levelTooltips[levelClass][lang]);
+            element.style.cursor = 'help';
+        });
+    }
+    
+    // Ajouter les tooltips au chargement
+    addLevelTooltips(currentLang);
+    
+    // Mettre à jour les tooltips lors du changement de langue
+    const originalTranslatePage = translatePage;
+    translatePage = function(lang) {
+        originalTranslatePage(lang);
+        addLevelTooltips(lang);
+    };
     
     // Système d'onglets
     const tabs = document.querySelectorAll('.tab');
