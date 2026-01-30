@@ -22,7 +22,8 @@ const translations = {
         'timeline-2023-title': 'Prototypes sur temps libre (multi-engines)',
         'timeline-2023-desc': 'Prototypes de génération procédurale 2D/3D sous Unity, exploration de Godot et GameMaker',
         'timeline-2025-title': 'Développement de moteur maison',
-        'timeline-2025-desc': 'Moteur maison : MonoGame puis C# pur'
+        'timeline-2025-desc': 'Moteur maison : MonoGame puis C# pur',
+        'timeline-tech-label': 'Technologies :'
     },
     en: {
         'name': 'BEDENES Guillaume',
@@ -46,7 +47,8 @@ const translations = {
         'timeline-2023-title': 'Prototypes in free time (multi-engines)',
         'timeline-2023-desc': '2D/3D procedural generation prototypes on Unity, exploration of Godot and GameMaker',
         'timeline-2025-title': 'Home engine development',
-        'timeline-2025-desc': 'Home engine: MonoGame then pure C#'
+        'timeline-2025-desc': 'Home engine: MonoGame then pure C#',
+        'timeline-tech-label': 'Technologies:'
     }
 };
 
@@ -133,6 +135,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof addLevelTooltips === 'function') {
                 addLevelTooltips(lang);
             }
+            // Mettre à jour le libellé "Technologies" dans la carte timeline visible
+            const visibleDetails = document.querySelector('.timeline-details-card.active');
+            if (visibleDetails) {
+                const techLabelEl = visibleDetails.querySelector('.timeline-tech-label');
+                if (techLabelEl && translations[lang] && translations[lang]['timeline-tech-label']) {
+                    techLabelEl.textContent = translations[lang]['timeline-tech-label'];
+                }
+            }
         });
     });
     
@@ -217,7 +227,8 @@ const GALLERY_CONFIG = {
     '2015': ['1.png', '2.png'],
     '2016-2017': ['1.png', '2.png', '3.png', '4.png'],
     '2018-2021': ['https://www.youtube.com/watch?v=Imfw4LeQNlE', 'https://www.youtube.com/watch?v=9RxU5nMuasY', '1.png', '2.png'],
-    '2022-2023': ['1.png', '2.png', '3.png']
+    '2022-2023': ['1.png', '2.png', '3.png'],
+    '2025-2026': ['1.png']
 };
 
 function isYouTubeUrl(str) {
@@ -385,12 +396,14 @@ function initTimeline() {
             if (detailsCard && detailsYear && detailsTitle && detailsDesc) {
                 detailsYear.textContent = year;
                 detailsTitle.textContent = title;
-                detailsDesc.textContent = desc;
+                detailsDesc.innerHTML = desc;
                 
                 // Afficher les technologies
                 if (detailsTech && tech) {
+                    const lang = localStorage.getItem('language') || 'fr';
+                    const techLabel = (translations[lang] && translations[lang]['timeline-tech-label']) ? translations[lang]['timeline-tech-label'] : 'Technologies :';
                     const techArray = tech.split(',').map(t => t.trim());
-                    detailsTech.innerHTML = '<div class="timeline-tech-label">Technologies :</div><div class="timeline-tech-tags">' + 
+                    detailsTech.innerHTML = '<div class="timeline-tech-label">' + techLabel + '</div><div class="timeline-tech-tags">' + 
                         techArray.map(t => `<span class="timeline-tech-tag">${t}</span>`).join('') + 
                         '</div>';
                 } else if (detailsTech) {
