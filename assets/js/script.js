@@ -210,101 +210,47 @@ document.addEventListener('DOMContentLoaded', function() {
     initTimeline();
 });
 
+// Config fixe des images par année (évite des centaines de requêtes 404 sur GitHub Pages)
+// Ajoute ici les années qui ont des images : { '2008': ['1.jpg', '2.jpg'], ... }
+const GALLERY_CONFIG = {
+    '2008': ['1.jpg', '2.jpg', '3.jpg', '4.jpg']
+};
+
+// Dernière requête galerie (pour ignorer les réponses en retard et éviter la mauvaise date)
+let lastGalleryRequestId = 0;
+
 // Fonction pour charger les images d'une période
-async function loadGalleryImages(year, isFr) {
+function loadGalleryImages(year, isFr) {
+    const requestId = ++lastGalleryRequestId;
     const galleryMainImg = document.getElementById(isFr ? 'gallery-main-img-fr' : 'gallery-main-img-en');
     const galleryPlaceholder = document.getElementById(isFr ? 'gallery-placeholder-fr' : 'gallery-placeholder-en');
     const galleryThumbnails = document.getElementById(isFr ? 'gallery-thumbnails-fr' : 'gallery-thumbnails-en');
-    
-    // Construire le chemin du dossier
+
     const folderPath = `./assets/images/gamedev/${year}`;
-    
-    // Liste des extensions d'images supportées
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'];
-    
-    // Fonction pour tester si une image existe
-    function testImageExists(url) {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-            img.src = url;
-        });
-    }
-    
-    // Essayer de charger des images avec différents noms possibles
-    const images = [];
-    const maxAttempts = 50; // Augmenté pour permettre plus d'images
-    
-    // Essayer des noms numérotés (image1.jpg, image2.jpg, etc.)
-    for (let i = 1; i <= maxAttempts; i++) {
-        for (const ext of imageExtensions) {
-            const imagePath = `${folderPath}/image${i}.${ext}`;
-            const exists = await testImageExists(imagePath);
-            if (exists) {
-                images.push(imagePath);
-                break; // Passer au numéro suivant une fois qu'une extension fonctionne
-            }
-        }
-    }
-    
-    // Si aucune image trouvée avec "imageX", essayer des noms numériques simples
-    if (images.length === 0) {
-        for (let i = 1; i <= maxAttempts; i++) {
-            for (const ext of imageExtensions) {
-                const imagePath = `${folderPath}/${i}.${ext}`;
-                const exists = await testImageExists(imagePath);
-                if (exists) {
-                    images.push(imagePath);
-                    break;
-                }
-            }
-        }
-    }
-    
-    // Essayer aussi des noms avec zéro padding (01.jpg, 02.jpg, etc.)
-    if (images.length === 0) {
-        for (let i = 1; i <= maxAttempts; i++) {
-            const paddedNum = String(i).padStart(2, '0');
-            for (const ext of imageExtensions) {
-                const imagePath = `${folderPath}/${paddedNum}.${ext}`;
-                const exists = await testImageExists(imagePath);
-                if (exists) {
-                    images.push(imagePath);
-                    break;
-                }
-            }
-        }
-    }
-    
-    // Afficher la galerie
+    const fileList = GALLERY_CONFIG[year];
+    const images = fileList ? fileList.map(f => `${folderPath}/${f}`) : [];
+
     if (images.length > 0) {
         galleryPlaceholder.style.display = 'none';
         galleryMainImg.style.display = 'block';
         galleryMainImg.src = images[0];
         galleryMainImg.alt = `Image ${year}`;
-        
-        // Créer les miniatures avec défilement horizontal
+
         galleryThumbnails.innerHTML = '';
         images.forEach((imgPath, index) => {
             const thumbnail = document.createElement('div');
             thumbnail.className = 'gallery-thumbnail' + (index === 0 ? ' active' : '');
             thumbnail.addEventListener('click', function() {
-                // Retirer la classe active de toutes les miniatures
                 galleryThumbnails.querySelectorAll('.gallery-thumbnail').forEach(t => t.classList.remove('active'));
-                // Ajouter la classe active à la miniature cliquée
                 this.classList.add('active');
-                // Changer l'image principale avec une transition
                 galleryMainImg.style.opacity = '0';
                 setTimeout(() => {
                     galleryMainImg.src = imgPath;
                     galleryMainImg.style.opacity = '1';
                 }, 150);
-                
-                // Faire défiler la miniature dans la vue si nécessaire
                 this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             });
-            
+
             const thumbnailImg = document.createElement('img');
             thumbnailImg.src = imgPath;
             thumbnailImg.alt = `Miniature ${index + 1}`;
@@ -312,23 +258,21 @@ async function loadGalleryImages(year, isFr) {
             thumbnail.appendChild(thumbnailImg);
             galleryThumbnails.appendChild(thumbnail);
         });
-        
-        // Réinitialiser l'opacité de l'image principale
+
         galleryMainImg.style.opacity = '1';
-        
-        // Attendre que l'image principale soit chargée
+
         return new Promise((resolve) => {
             if (galleryMainImg.complete) {
                 resolve();
             } else {
-                galleryMainImg.onload = () => resolve();
-                galleryMainImg.onerror = () => resolve(); // Résoudre même en cas d'erreur
+                galleryMainImg.onload = () => { if (requestId === lastGalleryRequestId) resolve(); };
+                galleryMainImg.onerror = () => resolve();
             }
         });
     } else {
-        // Aucune image trouvée, afficher le placeholder
         galleryPlaceholder.style.display = 'flex';
         galleryMainImg.style.display = 'none';
+        galleryMainImg.src = '';
         galleryThumbnails.innerHTML = '';
         return Promise.resolve();
     }
@@ -378,7 +322,6 @@ function initTimeline() {
                 
                 // Charger la galerie d'images pour cette période
                 loadGalleryImages(year, isFr).then(() => {
-                    // Ajuster la hauteur de la carte après le chargement des images
                     adjustCardHeight(detailsCard);
                 });
                 
