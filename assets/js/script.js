@@ -210,69 +210,141 @@ document.addEventListener('DOMContentLoaded', function() {
     initTimeline();
 });
 
-// Config fixe des images par année (évite des centaines de requêtes 404 sur GitHub Pages)
-// Ajoute ici les années qui ont des images : { '2008': ['1.jpg', '2.jpg'], ... }
+// Config galerie par année : images (1.png, 2.jpeg, 3.gif...) et/ou liens YouTube
+// Exemple : '2008': ['1.png', '2.jpeg', 'https://www.youtube.com/watch?v=xxxxx', '3.gif']
 const GALLERY_CONFIG = {
-    '2008': ['1.jpg', '2.jpg', '3.jpg', '4.jpg']
+    '2008': ['1.png', '2.jpg', '3.png'],
+    '2015': ['1.png', '2.png'],
+    '2016-2017': ['1.png', '2.png', '3.png', '4.png'],
+    '2018-2021': ['https://www.youtube.com/watch?v=Imfw4LeQNlE', 'https://www.youtube.com/watch?v=9RxU5nMuasY', '1.png', '2.png'],
+    '2022-2023': ['1.png', '2.png', '3.png']
 };
 
-// Dernière requête galerie (pour ignorer les réponses en retard et éviter la mauvaise date)
+function isYouTubeUrl(str) {
+    if (typeof str !== 'string') return false;
+    return /youtube\.com\/watch\?v=|youtu\.be\//i.test(str.trim());
+}
+
+function getYouTubeVideoId(url) {
+    const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+    return m ? m[1] : null;
+}
+
+function getYouTubeEmbedUrl(url) {
+    const id = getYouTubeVideoId(url);
+    if (!id) return null;
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const isLocal = !origin || /^file:\/\//i.test(origin) || /localhost|127\.0\.0\.1/i.test(origin);
+    if (isLocal) {
+        return `https://www.youtube.com/embed/${id}`;
+    }
+    const params = new URLSearchParams();
+    params.set('origin', origin);
+    return `https://www.youtube-nocookie.com/embed/${id}?${params.toString()}`;
+}
+
+function getYouTubeThumbUrl(url) {
+    const id = getYouTubeVideoId(url);
+    return id ? `https://img.youtube.com/vi/${id}/mqdefault.jpg` : null;
+}
+
+// Dernière requête galerie (pour ignorer les réponses en retard)
 let lastGalleryRequestId = 0;
 
-// Fonction pour charger les images d'une période
+// Construit la liste des médias (images locales ou YouTube) pour une année
+function buildGalleryItems(year) {
+    const folderPath = `./assets/images/gamedev/${year}`;
+    const fileList = GALLERY_CONFIG[year];
+    if (!fileList || fileList.length === 0) return [];
+
+    return fileList.map(entry => {
+        const s = String(entry).trim();
+        if (isYouTubeUrl(s)) {
+            const embedUrl = getYouTubeEmbedUrl(s);
+            const thumbUrl = getYouTubeThumbUrl(s);
+            return { type: 'youtube', url: embedUrl, thumbUrl, alt: 'Vidéo YouTube' };
+        }
+        return { type: 'image', url: `${folderPath}/${s}`, thumbUrl: `${folderPath}/${s}`, alt: `Média ${year}` };
+    }).filter(item => item.url);
+}
+
+// Affiche un média (image ou iframe YouTube) dans la zone principale
+function setMainMedia(mediaEl, item) {
+    mediaEl.innerHTML = '';
+    if (!item) return;
+    if (item.type === 'youtube') {
+        const iframe = document.createElement('iframe');
+        iframe.src = item.url;
+        iframe.title = 'Vidéo YouTube';
+        iframe.setAttribute('frameborder', '0');
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = 'no-referrer';
+        iframe.setAttribute('loading', 'lazy');
+        iframe.className = 'gallery-main-video';
+        mediaEl.appendChild(iframe);
+    } else {
+        const img = document.createElement('img');
+        img.src = item.url;
+        img.alt = item.alt;
+        img.className = 'gallery-main-img';
+        mediaEl.appendChild(img);
+    }
+}
+
+// Fonction pour charger la galerie (images + liens YouTube) d'une période
 function loadGalleryImages(year, isFr) {
     const requestId = ++lastGalleryRequestId;
-    const galleryMainImg = document.getElementById(isFr ? 'gallery-main-img-fr' : 'gallery-main-img-en');
+    const galleryMedia = document.getElementById(isFr ? 'gallery-main-media-fr' : 'gallery-main-media-en');
     const galleryPlaceholder = document.getElementById(isFr ? 'gallery-placeholder-fr' : 'gallery-placeholder-en');
     const galleryThumbnails = document.getElementById(isFr ? 'gallery-thumbnails-fr' : 'gallery-thumbnails-en');
 
-    const folderPath = `./assets/images/gamedev/${year}`;
-    const fileList = GALLERY_CONFIG[year];
-    const images = fileList ? fileList.map(f => `${folderPath}/${f}`) : [];
+    const items = buildGalleryItems(year);
 
-    if (images.length > 0) {
+    if (items.length > 0) {
         galleryPlaceholder.style.display = 'none';
-        galleryMainImg.style.display = 'block';
-        galleryMainImg.src = images[0];
-        galleryMainImg.alt = `Image ${year}`;
+        galleryMedia.style.display = 'block';
+        galleryMedia.style.opacity = '1';
+        setMainMedia(galleryMedia, items[0]);
 
         galleryThumbnails.innerHTML = '';
-        images.forEach((imgPath, index) => {
+        items.forEach((item, index) => {
             const thumbnail = document.createElement('div');
-            thumbnail.className = 'gallery-thumbnail' + (index === 0 ? ' active' : '');
+            thumbnail.className = 'gallery-thumbnail' + (index === 0 ? ' active' : '') + (item.type === 'youtube' ? ' gallery-thumbnail-video' : '');
+            thumbnail.dataset.index = index;
             thumbnail.addEventListener('click', function() {
                 galleryThumbnails.querySelectorAll('.gallery-thumbnail').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                galleryMainImg.style.opacity = '0';
+                const idx = parseInt(this.dataset.index, 10);
+                galleryMedia.style.opacity = '0';
                 setTimeout(() => {
-                    galleryMainImg.src = imgPath;
-                    galleryMainImg.style.opacity = '1';
+                    setMainMedia(galleryMedia, items[idx]);
+                    galleryMedia.style.opacity = '1';
                 }, 150);
                 this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             });
 
             const thumbnailImg = document.createElement('img');
-            thumbnailImg.src = imgPath;
-            thumbnailImg.alt = `Miniature ${index + 1}`;
+            thumbnailImg.src = item.thumbUrl;
+            thumbnailImg.alt = item.type === 'youtube' ? 'Vidéo' : `Miniature ${index + 1}`;
             thumbnailImg.loading = 'lazy';
             thumbnail.appendChild(thumbnailImg);
             galleryThumbnails.appendChild(thumbnail);
         });
 
-        galleryMainImg.style.opacity = '1';
-
+        const firstMedia = galleryMedia.querySelector('.gallery-main-img');
         return new Promise((resolve) => {
-            if (galleryMainImg.complete) {
+            if (!firstMedia || firstMedia.complete) {
                 resolve();
             } else {
-                galleryMainImg.onload = () => { if (requestId === lastGalleryRequestId) resolve(); };
-                galleryMainImg.onerror = () => resolve();
+                firstMedia.onload = () => { if (requestId === lastGalleryRequestId) resolve(); };
+                firstMedia.onerror = () => resolve();
             }
         });
     } else {
         galleryPlaceholder.style.display = 'flex';
-        galleryMainImg.style.display = 'none';
-        galleryMainImg.src = '';
+        galleryMedia.style.display = 'none';
+        galleryMedia.innerHTML = '';
         galleryThumbnails.innerHTML = '';
         return Promise.resolve();
     }
