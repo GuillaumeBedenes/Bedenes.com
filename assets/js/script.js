@@ -260,29 +260,34 @@ function buildGalleryItems(year) {
     return fileList.map(entry => {
         const s = String(entry).trim();
         if (isYouTubeUrl(s)) {
-            const embedUrl = getYouTubeEmbedUrl(s);
+            const videoId = getYouTubeVideoId(s);
             const thumbUrl = getYouTubeThumbUrl(s);
-            return { type: 'youtube', url: embedUrl, thumbUrl, alt: 'Vidéo YouTube' };
+            return { type: 'youtube', videoId, thumbUrl, alt: 'Vidéo YouTube' };
         }
         return { type: 'image', url: `${folderPath}/${s}`, thumbUrl: `${folderPath}/${s}`, alt: `Média ${year}` };
-    }).filter(item => item.url);
+    }).filter(item => item.type === 'youtube' ? item.videoId : item.url);
 }
 
-// Affiche un média (image ou iframe YouTube) dans la zone principale
+// Iframe YouTube (referrerpolicy = fix erreur 153) : attendre que l’API soit prête puis créer le lecteur
+function createYouTubeEmbed(containerEl, videoId) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'gallery-main-video-wrapper';
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.title = 'Vidéo YouTube';
+    wrapper.appendChild(iframe);
+    containerEl.appendChild(wrapper);
+}
+
+// Affiche un média (image ou lecteur YouTube via l’API) dans la zone principale
 function setMainMedia(mediaEl, item) {
     mediaEl.innerHTML = '';
     if (!item) return;
     if (item.type === 'youtube') {
-        const iframe = document.createElement('iframe');
-        iframe.src = item.url;
-        iframe.title = 'Vidéo YouTube';
-        iframe.setAttribute('frameborder', '0');
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-        iframe.allowFullscreen = true;
-        iframe.referrerPolicy = 'no-referrer';
-        iframe.setAttribute('loading', 'lazy');
-        iframe.className = 'gallery-main-video';
-        mediaEl.appendChild(iframe);
+        createYouTubeEmbed(mediaEl, item.videoId);
     } else {
         const img = document.createElement('img');
         img.src = item.url;
