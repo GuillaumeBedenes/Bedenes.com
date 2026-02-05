@@ -13,6 +13,10 @@ body {
     min-height: 100vh;
 }
 
+.is-hidden {
+    display: none !important;
+}
+
 #particles-canvas {
     position: fixed;
     top: 0;
@@ -208,6 +212,8 @@ body {
 .tab.active {
     color: #00ff00;
     background-color: #0a0a0a;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
     border-bottom: 2px solid #0a0a0a;
     margin-bottom: -2px;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
@@ -300,10 +306,6 @@ body {
     gap: 30px;
     width: 100%;
     box-sizing: border-box;
-}
-
-.skills-container[style*="display: none"] {
-    display: none !important;
 }
 
 .skill-category {
@@ -452,6 +454,10 @@ body {
     flex: 1;
     z-index: 2;
     min-height: 60px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font: inherit;
 }
 
 .timeline-item.active {
@@ -580,6 +586,14 @@ body {
     opacity: 0.9;
     margin-bottom: 15px;
     word-wrap: break-word;
+}
+
+.timeline-details-desc p {
+    margin-bottom: 12px;
+}
+
+.timeline-details-desc p:last-child {
+    margin-bottom: 0;
 }
 
 .timeline-details-tech {
@@ -817,6 +831,8 @@ body {
     overflow: hidden;
     background-color: #0a0a0a;
     position: relative;
+    padding: 0;
+    font: inherit;
 }
 
 .gallery-thumbnail img {

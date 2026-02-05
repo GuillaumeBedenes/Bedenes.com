@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -8,11 +8,11 @@
 </head>
 <body>
     <canvas id="particles-canvas"></canvas>
-    
+
     <div class="container">
         <header class="profile-header">
             <div class="language-selector">
-                <button class="lang-btn active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
                 <button class="lang-btn" data-lang="en">EN</button>
             </div>
             <a href="./documents/cv.pdf" download="CV_BEDENES_Guillaume.pdf" class="cv-btn" data-i18n="cv-button">CV</a>
@@ -20,222 +20,50 @@
             <div class="profile-info">
                 <h1 data-i18n="name">BEDENES Guillaume</h1>
                 <p class="email"><a href="mailto:guillaume.bedenes@epitech.eu" data-i18n="email">guillaume.bedenes@epitech.eu</a></p>
-                <p class="bio" data-i18n="bio">Ingénieur logiciel<br>Développement de logiciels, de jeux et de systèmes complexes.</p>
+                <p class="bio" data-i18n="bio">Ingenieur logiciel<br>Developpement de logiciels, de jeux et de systemes complexes.</p>
             </div>
         </header>
-        
+
         <main class="content-area">
             <div class="tabs">
-                <button class="tab active" data-tab="competences" data-i18n="tab-skills">Compétences</button>
+                <button class="tab active" data-tab="competences" data-i18n="tab-skills">Competences</button>
                 <button class="tab" data-tab="timeline" data-i18n="tab-timeline">Game Dev Timeline</button>
             </div>
-            
+
             <div class="tab-content">
                 <div class="tab-pane active" id="competences">
                     <div class="terminal-window">
                         <div class="skills-content">
                             <pre class="terminal-text" data-i18n="skills-command">$ cat competences.txt</pre>
-                            <div class="skills-container" id="skills-container-fr">
-                                <div class="skill-category">
-                                    <h3 class="category-title">⌨️ Programmation</h3>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Langages</h4>
-                                        <div class="skill-item"><span class="skill-name">C#</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">C</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">C++</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Python</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">SQL</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">JavaScript</span><span class="skill-level level-1"></span></div>
-                                    </div>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Frameworks & technologies</h4>
-                                        <div class="skill-item"><span class="skill-name">Unity</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">WPF</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">UWP</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">WinDev</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">SFML</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Monogame</span><span class="skill-level level-2"></span></div>
-                                    </div>
-                                </div>
-                                <div class="skill-category">
-                                    <h3 class="category-title">🖥️ Environnements & outils</h3>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Systèmes</h4>
-                                        <div class="skill-item"><span class="skill-name">Windows</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Linux (Arch Linux, i3wm)</span><span class="skill-level level-2"></span></div>
-                                    </div>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Outils de gestion de projet</h4>
-                                        <div class="skill-item"><span class="skill-name">Obsidian</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Git</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">GitLab</span><span class="skill-level level-1"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Azure DevOps</span><span class="skill-level level-1"></span></div>
-                                    </div>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Outils d'édition</h4>
-                                        <div class="skill-item"><span class="skill-name">Cursor</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Visual Studio</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Emacs</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Vim</span><span class="skill-level level-1"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Nano</span><span class="skill-level level-1"></span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skills-container" id="skills-container-en" style="display: none;">
-                                <div class="skill-category">
-                                    <h3 class="category-title">⌨️ Programming</h3>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Languages</h4>
-                                        <div class="skill-item"><span class="skill-name">C#</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">C</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">C++</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Python</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">SQL</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">JavaScript</span><span class="skill-level level-1"></span></div>
-                                    </div>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Frameworks & technologies</h4>
-                                        <div class="skill-item"><span class="skill-name">Unity</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">WPF</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">UWP</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">WinDev</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">SFML</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Monogame</span><span class="skill-level level-2"></span></div>
-                                    </div>
-                                </div>
-                                <div class="skill-category">
-                                    <h3 class="category-title">🖥️ Environments & tools</h3>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Systems</h4>
-                                        <div class="skill-item"><span class="skill-name">Windows</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Linux (Arch Linux, i3wm)</span><span class="skill-level level-2"></span></div>
-                                    </div>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Project management tools</h4>
-                                        <div class="skill-item"><span class="skill-name">Obsidian</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Git</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">GitLab</span><span class="skill-level level-1"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Azure DevOps</span><span class="skill-level level-1"></span></div>
-                                    </div>
-                                    <div class="skill-section">
-                                        <h4 class="section-title">Editing tools</h4>
-                                        <div class="skill-item"><span class="skill-name">Cursor</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Visual Studio</span><span class="skill-level level-3"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Emacs</span><span class="skill-level level-2"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Vim</span><span class="skill-level level-1"></span></div>
-                                        <div class="skill-item"><span class="skill-name">Nano</span><span class="skill-level level-1"></span></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="skills-container" id="skills-container"></div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="tab-pane" id="timeline">
                     <div class="terminal-window">
                         <div class="timeline-content">
                             <pre class="terminal-text" data-i18n="timeline-command">$ cat timeline.txt</pre>
                             <div class="timeline-wrapper">
-                                <div class="timeline-container" id="timeline-container-fr">
-                                    <div class="timeline-item" data-year="2008" data-title="Découverte de la création de jeux" data-desc="Découverte précoce du game design et du level design à l'aide d'outils accessibles de création de jeux vidéo. Premières expérimentations autour de la conception de niveaux et des mécaniques de jeu." data-tech="FPS Creator, RPG Maker">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2008</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2015" data-title="Premiers pas en programmation" data-desc="Premiers pas en programmation avec le modding Minecraft en Java et le développement web (HTML, CSS). Sortie des outils clé en main pour commencer à coder des systèmes de jeu basiques : déplacements, interactions, combat, points de vie et score." data-tech="GameMaker, Construct 2, Java, HTML, CSS">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2015</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2016-2017" data-title="Développement de jeux sans moteur" data-desc="Premiers développements de jeux complets en C (CSFML), C++ (Irrlicht) et JavaScript (Phaser). Génération procédurale avec le projet Rebirth (inspiré de The Binding of Isaac) et premières implémentations de gestion de mondes 2D par chunks." data-tech="SFML, Phaser, C++, SDL, CSFML, C, Irrlicht">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2016-2017</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2018-2021" data-title="Apprentissage et maîtrise d'Unity" data-desc="Apprentissage d'Unity à travers des prototypes axés sur la génération procédurale (bruit de Perlin, Voronoï), la création de mondes et de planètes à grande échelle, ainsi que la génération et le placement de biomes.<br><br>Maîtrise d'Unity à travers le développement de jeux complets en équipe, lors de game jams et au sein du studio Muddy Crab. Spécialisation en scripting C#, VFX, post-processing et level design." data-tech="Unity, C#">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2018-2021</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2022-2023" data-title="Professionnalisation avec Unity" data-desc="Développement en équipe d'un simulateur 3D pour Airbus, axé sur la simulation des MFD et du KCCU de l'A350. Mission Unity en contexte professionnel, orientée architecture logicielle, design patterns avancés et structuration de projets complexes, avec mentorat par un ingénieur de l'écosystème Unity." data-tech="Unity, C#">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2022-2023</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2023-2024" data-title="Ouverture à d'autres moteurs de jeu" data-desc="Application concrète des compétences acquises sous Unity à travers des projets de génération procédurale en 3D, avec l'implémentation d'un système de chunks inspiré de Minecraft. Exploration d'autres moteurs de jeu (Godot, GameMaker, Heaps.io), en gardant un focus constant sur la génération procédurale." data-tech="Unity, Godot, GameMaker, Heaps.io, C#">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2023-2024</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2025-2026" data-title="Développement d'un moteur de jeu" data-desc="Conception d'un moteur de jeu maison orienté innovation et génération de contenu assistée par IA. Développement progressif d'une architecture sur mesure, d'abord basée sur MonoGame, puis entièrement en C# avec Avalonia utilisée pour le rendu." data-tech="MonoGame, C#, Avalonia">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2025-2026</div>
-                                    </div>
-                                    <div class="timeline-details-card" id="timeline-details-fr">
-                                        <div class="timeline-details-content">
-                                            <div class="timeline-details-left">
-                                                <div class="timeline-details-year" id="details-year-fr"></div>
-                                                <h3 class="timeline-details-title" id="details-title-fr"></h3>
-                                                <p class="timeline-details-desc" id="details-desc-fr"></p>
-                                                <div class="timeline-details-tech" id="details-tech-fr"></div>
-                                            </div>
-                                            <div class="timeline-media" id="details-media-fr">
-                                                <div class="gallery-container">
-                                                    <div class="gallery-main">
-                                                        <div id="gallery-main-media-fr" class="gallery-main-media" style="display: none;"></div>
-                                                        <div class="gallery-placeholder" id="gallery-placeholder-fr" aria-hidden="true">
-                                                            <span class="gallery-placeholder-icon" aria-hidden="true"></span>
-                                                            <span class="gallery-placeholder-text">Aucune image</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="gallery-thumbnails" id="gallery-thumbnails-fr"></div>
-                                                </div>
-                                            </div>
+                                <div class="timeline-container" id="timeline-container"></div>
+                                <div class="timeline-details-card" id="timeline-details">
+                                    <div class="timeline-details-content">
+                                        <div class="timeline-details-left">
+                                            <div class="timeline-details-year" id="details-year"></div>
+                                            <h3 class="timeline-details-title" id="details-title"></h3>
+                                            <div class="timeline-details-desc" id="details-desc"></div>
+                                            <div class="timeline-details-tech" id="details-tech"></div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="timeline-container" id="timeline-container-en" style="display: none;">
-                                    <div class="timeline-item" data-year="2008" data-title="Discovery of game creation" data-desc="Early discovery of game design and level design using accessible game creation tools. First experiments with level design and game mechanics." data-tech="FPS Creator, RPG Maker">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2008</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2015" data-title="First steps in programming" data-desc="First steps in programming with Minecraft modding in Java and web development (HTML, CSS). Moving beyond ready-made tools to start coding basic game systems: movement, interactions, combat, health points and score." data-tech="GameMaker, Construct 2, Java, HTML, CSS">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2015</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2016-2017" data-title="Game development without an engine" data-desc="First complete game developments in C (CSFML), C++ (Irrlicht) and JavaScript (Phaser). Procedural generation with the Rebirth project (inspired by The Binding of Isaac) and first implementations of 2D world chunk management." data-tech="SFML, Phaser, C++, SDL, CSFML, C, Irrlicht">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2016-2017</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2018-2021" data-title="Learning and mastery of Unity" data-desc="Learning Unity through prototypes focused on procedural generation (Perlin noise, Voronoi), creation of worlds and planets at large scale, as well as biome generation and placement.<br><br>Mastery of Unity through the development of complete games in a team, during game jams and at Muddy Crab studio. Specialization in C# scripting, VFX, post-processing and level design." data-tech="Unity, C#">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2018-2021</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2022-2023" data-title="Professionalization with Unity" data-desc="Team development of a 3D simulator for Airbus, focused on simulating the A350 MFD and KCCU. Professional Unity mission focused on software architecture, advanced design patterns and structuring of complex projects, with mentoring by a Unity ecosystem engineer." data-tech="Unity, C#">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2022-2023</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2023-2024" data-title="Opening up to other game engines" data-desc="Concrete application of skills acquired in Unity through 3D procedural generation projects, with implementation of a Minecraft-inspired chunk system. Exploration of other game engines (Godot, GameMaker, Heaps.io), with a constant focus on procedural generation." data-tech="Unity, Godot, GameMaker, Heaps.io, C#">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2023-2024</div>
-                                    </div>
-                                    <div class="timeline-item" data-year="2025-2026" data-title="Development of a game engine" data-desc="Design of a custom game engine focused on innovation and AI-assisted content generation. Progressive development of a tailor-made architecture, first based on MonoGame, then entirely in C# with Avalonia used for rendering." data-tech="MonoGame, C#, Avalonia">
-                                        <div class="timeline-point"></div>
-                                        <div class="timeline-label">2025-2026</div>
-                                    </div>
-                                    <div class="timeline-details-card" id="timeline-details-en">
-                                        <div class="timeline-details-content">
-                                            <div class="timeline-details-left">
-                                                <div class="timeline-details-year" id="details-year-en"></div>
-                                                <h3 class="timeline-details-title" id="details-title-en"></h3>
-                                                <p class="timeline-details-desc" id="details-desc-en"></p>
-                                                <div class="timeline-details-tech" id="details-tech-en"></div>
-                                            </div>
-                                            <div class="timeline-media" id="details-media-en">
-                                                <div class="gallery-container">
-                                                    <div class="gallery-main">
-                                                        <div id="gallery-main-media-en" class="gallery-main-media" style="display: none;"></div>
-                                                        <div class="gallery-placeholder" id="gallery-placeholder-en" aria-hidden="true">
-                                                            <span class="gallery-placeholder-icon" aria-hidden="true"></span>
-                                                            <span class="gallery-placeholder-text">No images</span>
-                                                        </div>
+                                        <div class="timeline-media" id="details-media">
+                                            <div class="gallery-container">
+                                                <div class="gallery-main">
+                                                    <div id="gallery-main-media" class="gallery-main-media is-hidden"></div>
+                                                    <div class="gallery-placeholder" id="gallery-placeholder" aria-hidden="true">
+                                                        <span class="gallery-placeholder-icon" aria-hidden="true"></span>
+                                                        <span class="gallery-placeholder-text" data-i18n="gallery-empty">Aucune image</span>
                                                     </div>
-                                                    <div class="gallery-thumbnails" id="gallery-thumbnails-en"></div>
                                                 </div>
+                                                <div class="gallery-thumbnails" id="gallery-thumbnails"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -247,7 +75,7 @@
             </div>
         </main>
     </div>
-    
-    <script src="./assets/js/script.js"></script>
+
+    <script src="./assets/js/script.js" defer></script>
 </body>
 </html>
