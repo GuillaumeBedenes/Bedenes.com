@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guillaume BEDENES</title>
+    <title>Guillaume Bedenes - Ingénieur logiciel</title>
+    <meta name="description" content="Guillaume Bedenes, ingénieur logiciel spécialisé en développement logiciel, systèmes complexes, architecture applicative et création de jeux vidéo. Découvrez mon profil, mes compétences et mes projets.">
+    <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
@@ -16,25 +18,37 @@
                 <button class="lang-btn" data-lang="en">EN</button>
             </div>
             <a href="./documents/cv.pdf" download="CV_BEDENES_Guillaume.pdf" class="cv-btn" data-i18n="cv-button">CV</a>
-            <img src="./assets/images/Profile.jpg" alt="Profil" class="profile-image" />
+            <img src="./assets/images/Profile.jpg" alt="Photo de profil" class="profile-image" />
             <div class="profile-info">
-                <h1 data-i18n="name">BEDENES Guillaume</h1>
+                <h1 data-i18n="name">Guillaume BEDENES</h1>
                 <p class="email"><a href="mailto:guillaume.bedenes@epitech.eu" data-i18n="email">guillaume.bedenes@epitech.eu</a></p>
-                <p class="bio" data-i18n="bio">Ingenieur logiciel<br>Developpement de logiciels, de jeux et de systemes complexes.</p>
+                <p class="bio" data-i18n="bio">Ingénieur logiciel<br>Développement de logiciels, de jeux et de systèmes complexes.</p>
             </div>
         </header>
 
         <main class="content-area">
             <div class="tabs">
-                <button class="tab active" data-tab="competences" data-i18n="tab-skills">Competences</button>
+                <button class="tab active" data-tab="presentation" data-i18n="tab-presentation">Présentation</button>
+                <button class="tab" data-tab="competences" data-i18n="tab-skills">Compétences</button>
                 <button class="tab" data-tab="timeline" data-i18n="tab-timeline">Game Dev Timeline</button>
+                <button class="tab" data-tab="downloads" data-i18n="tab-downloads">Downloads</button>
             </div>
 
             <div class="tab-content">
-                <div class="tab-pane active" id="competences">
+                <!-- Note future modification: les commandes cat restent en anglais pour toutes les langues. -->
+                <div class="tab-pane active" id="presentation">
+                    <div class="terminal-window">
+                        <div class="presentation-content">
+                            <pre class="terminal-text" data-i18n="presentation-command">$ cat presentation.txt</pre>
+                            <div class="presentation-container" id="presentation-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="competences">
                     <div class="terminal-window">
                         <div class="skills-content">
-                            <pre class="terminal-text" data-i18n="skills-command">$ cat competences.txt</pre>
+                            <pre class="terminal-text" data-i18n="skills-command">$ cat skills.txt</pre>
                             <div class="skills-container" id="skills-container"></div>
                         </div>
                     </div>
@@ -72,8 +86,18 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="tab-pane" id="downloads">
+                    <div class="terminal-window">
+                        <div class="downloads-content">
+                            <pre class="terminal-text" data-i18n="downloads-command">$ ls ./downloads</pre>
+                            <div class="downloads-container" id="downloads-container"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
+
     </div>
 
     <script src="./assets/js/script.js" defer></script>

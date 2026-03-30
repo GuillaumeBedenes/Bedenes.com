@@ -275,6 +275,16 @@ body {
     image-rendering: pixelated;
 }
 
+.presentation-content,
+.downloads-content {
+    color: #00ff00;
+    font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}
+
 .terminal-text {
     color: #00ff00;
     font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
@@ -289,6 +299,79 @@ body {
 }
 
 /* Styles pour les compétences */
+.presentation-container {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.presentation-block {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+    padding: 18px;
+    min-height: 100%;
+}
+
+.presentation-title {
+    color: #ffffff;
+    font-size: 1.05em;
+    margin-bottom: 14px;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.presentation-paragraph {
+    color: #cccccc;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.presentation-paragraph:last-child {
+    margin-bottom: 0;
+}
+
+.presentation-highlight {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.presentation-highlight-edu {
+    color: #00ffff;
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.35);
+}
+
+.presentation-highlight-pro {
+    color: #ff4d4d;
+    text-shadow: 0 0 6px rgba(255, 77, 77, 0.3);
+}
+
+.presentation-highlight-game {
+    color: #00ff00;
+    text-shadow: 0 0 6px rgba(0, 255, 0, 0.3);
+}
+
+.presentation-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.presentation-list-item {
+    color: #cccccc;
+    line-height: 1.5;
+    padding-left: 18px;
+    position: relative;
+}
+
+.presentation-list-item::before {
+    content: '> ';
+    position: absolute;
+    left: 0;
+    color: #00ff00;
+}
+
 .skills-content {
     color: #00ff00;
     font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
@@ -882,6 +965,202 @@ body {
     width: 100%;
 }
 
+.downloads-container {
+    margin-top: 15px;
+}
+
+.downloads-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.downloads-sidebar-card {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.downloads-sidebar-header {
+    color: #ffffff;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.04);
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.downloads-sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.download-nav-btn {
+    background-color: transparent;
+    color: #666666;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 14px 16px;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.download-nav-btn:last-child {
+    border-bottom: none;
+}
+
+.download-nav-btn:hover {
+    color: #00ff00;
+    background-color: #0a0a0a;
+}
+
+.download-nav-btn.active {
+    color: #00ff00;
+    background: linear-gradient(90deg, rgba(0, 255, 0, 0.14), rgba(0, 255, 0, 0.03));
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    box-shadow: inset 3px 0 0 #00ff00;
+}
+
+.download-nav-title {
+    color: #ffffff;
+    font-size: 0.98em;
+}
+
+.download-nav-subtitle {
+    color: #00ff00;
+    font-size: 0.82em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.download-nav-meta {
+    color: #9a9a9a;
+    font-size: 0.8em;
+}
+
+.downloads-state {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+    padding: 18px;
+    color: #cccccc;
+    line-height: 1.7;
+}
+
+.download-card {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+    padding: 18px;
+}
+
+.download-panel {
+    min-height: 240px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.download-media {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: #050505;
+}
+
+.download-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.download-body {
+    padding: 22px;
+}
+
+.download-title {
+    color: #ffffff;
+    font-size: 1.4em;
+    margin-bottom: 8px;
+}
+
+.download-subtitle {
+    color: #00ff00;
+    font-size: 0.9em;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.download-section-title {
+    color: #ffffff;
+    font-size: 1em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.download-description {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+.download-warning {
+    color: #ff4d4d;
+    line-height: 1.6;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 77, 77, 0.35);
+}
+
+.download-meta {
+    color: #00ffff;
+    font-size: 0.9em;
+    margin-bottom: 14px;
+}
+
+.download-link {
+    display: inline-block;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    text-decoration: none;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+}
+
+.download-link:hover {
+    color: #ffffff;
+    background-color: rgba(0, 255, 0, 0.12);
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.35);
+}
+
+.download-link-disabled,
+.download-link-disabled:hover {
+    color: #8a8a8a;
+    border-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.04);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.download-availability {
+    color: #ffd84d;
+    font-size: 0.9em;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -929,6 +1208,18 @@ body {
     .skills-container {
         flex-direction: column !important;
         gap: 20px;
+    }
+
+    .presentation-container {
+        grid-template-columns: 1fr;
+    }
+
+    .downloads-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .downloads-sidebar-card {
+        overflow: hidden;
     }
     
     .skill-category {
@@ -992,11 +1283,14 @@ body {
     
     .timeline-details-left {
         width: 100%;
+        max-width: 100%;
     }
     
     .timeline-media {
         width: 100%;
         margin-top: 20px;
+        max-width: 100%;
+        min-width: 0;
     }
     
     .gallery-main {

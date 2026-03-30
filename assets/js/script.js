@@ -6,42 +6,62 @@
 
   const TRANSLATIONS = {
     fr: {
-      name: "BEDENES Guillaume",
+      name: "Guillaume BEDENES",
       email: "guillaume.bedenes@epitech.eu",
-      bio: "Ingenieur logiciel\nDeveloppement de logiciels, de jeux et de systemes complexes.",
+      bio: "Ingénieur logiciel\nDéveloppement de logiciels, de jeux et de systèmes complexes.",
       "cv-button": "CV",
-      "tab-skills": "Competences",
-      "tab-timeline": "Game Dev Timeline",
-      "skills-command": "$ cat competences.txt",
+      "tab-presentation": "Présentation",
+      "tab-skills": "Compétences",
+      "tab-timeline": "Parcours Game Dev",
+      "tab-downloads": "Téléchargement",
+      "presentation-command": "$ cat presentation.txt",
+      "skills-command": "$ cat skills.txt",
       "timeline-command": "$ cat timeline.txt",
+      "downloads-command": "$ ls ./downloads",
+      "downloads-nav-title": "Projets",
+      "downloads-overview-title": "Présentation",
+      "downloads-status-label": "Statut",
+      "downloads-updated-label": "Dernière mise à jour",
       "timeline-tech-label": "Technologies :",
-      "gallery-empty": "Aucune image"
+      "gallery-empty": "Aucune image",
+      "downloads-empty": "Aucun jeu téléchargeable n'est encore publié ici.",
+      "downloads-empty-note": "L'onglet est prêt: il servira à regrouper mes prototypes et jeux distribuables."
     },
     en: {
-      name: "BEDENES Guillaume",
+      name: "Guillaume BEDENES",
       email: "guillaume.bedenes@epitech.eu",
       bio: "Software Engineer\nDevelopment of software, games and complex systems.",
       "cv-button": "CV",
+      "tab-presentation": "Presentation",
       "tab-skills": "Skills",
       "tab-timeline": "Game Dev Timeline",
+      "tab-downloads": "Downloads",
+      "presentation-command": "$ cat presentation.txt",
       "skills-command": "$ cat skills.txt",
       "timeline-command": "$ cat timeline.txt",
+      "downloads-command": "$ ls ./downloads",
+      "downloads-nav-title": "Projects",
+      "downloads-overview-title": "Overview",
+      "downloads-status-label": "Status",
+      "downloads-updated-label": "Last update",
       "timeline-tech-label": "Technologies:",
-      "gallery-empty": "No images"
+      "gallery-empty": "No images",
+      "downloads-empty": "No downloadable game is published here yet.",
+      "downloads-empty-note": "This tab is ready to host playable prototypes and downloadable builds."
     }
   };
 
   const LEVEL_TOOLTIPS = {
     "level-1": {
-      fr: "Base acquise - Je connais les concepts, je peux reprendre du code.",
+      fr: "Base acquise - Je connais les concepts et je peux reprendre du code.",
       en: "Basic level - I know the concepts and can take over code."
     },
     "level-2": {
-      fr: "Bon niveau - Utilise regulierement, autonome sur sujets non triviaux.",
+      fr: "Bon niveau - Utilisé régulièrement, autonome sur des sujets non triviaux.",
       en: "Good level - Used regularly, autonomous on non-trivial topics."
     },
     "level-3": {
-      fr: "Maitrise professionnelle - Utilise en production sur projets reels.",
+      fr: "Maîtrise professionnelle - Utilisé en production sur des projets réels.",
       en: "Professional mastery - Used in production on real projects."
     }
   };
@@ -79,7 +99,7 @@
         title: "Environnements & outils",
         sections: [
           {
-            title: "Systemes",
+            title: "Systèmes",
             items: [
               { name: "Windows", level: "level-3" },
               { name: "Linux (Arch Linux, i3wm)", level: "level-2" }
@@ -95,9 +115,8 @@
             ]
           },
           {
-            title: "Outils d'edition",
+            title: "Outils d'édition",
             items: [
-              { name: "Cursor", level: "level-3" },
               { name: "Visual Studio", level: "level-3" },
               { name: "Emacs", level: "level-2" },
               { name: "Vim", level: "level-1" },
@@ -157,7 +176,6 @@
           {
             title: "Editing tools",
             items: [
-              { name: "Cursor", level: "level-3" },
               { name: "Visual Studio", level: "level-3" },
               { name: "Emacs", level: "level-2" },
               { name: "Vim", level: "level-1" },
@@ -169,15 +187,36 @@
     ]
   };
 
+  const PRESENTATION_DATA = {
+    fr: {
+      detailsTitle: "Je suis un ingénieur formé à {{edu|EPITECH}}, basé dans le sud de la {{edu|France}}",
+      details: [
+        "Je travaille aujourd’hui sur des logiciels métiers dans les secteurs {{pro|industriel}} et {{pro|logistique}}, avec une approche orientée qualité : code propre, architecture solide, solutions durables.",
+        "À côté de ça, je développe des jeux vidéo depuis que j’ai appris à lire. C’est une passion centrale que je poursuis encore aujourd’hui à travers plusieurs projets. Mon parcours complet est disponible dans l’onglet {{game|Parcours Game Dev}}.",
+        "Côté joueur, je suis passionné de {{game|RPG}} et de liberté d’action. J’ai platiné 4 fois {{game|The Elder Scrolls V: Skyrim}}, j’ai complété plusieurs modpacks expert sur {{game|Minecraft}}, et je n’ai manqué aucune extension de {{game|World of Warcraft}}.",
+        "Je suis également un grand passionné de {{game|Star Citizen}} depuis son Kickstarter, et j’ai suivi chaque CitizenCon."
+      ]
+    },
+    en: {
+      detailsTitle: "I am an engineer trained at {{edu|EPITECH}}, based in the south of {{edu|France}}",
+      details: [
+        "I currently work on business software in the {{pro|industrial}} and {{pro|logistics}} sectors, with a quality-oriented approach: clean code, solid architecture, durable solutions.",
+        "Alongside that, I have been developing video games since I learned how to read. It is a central passion that I still pursue today through several projects. My full journey is available in the {{game|Game Dev Timeline}} tab.",
+        "As a player, I am passionate about {{game|RPGs}} and freedom of action. I have earned all achievements in {{game|The Elder Scrolls V: Skyrim}} four times, I have completed several expert modpacks on {{game|Minecraft}}, and I have not missed a single expansion of {{game|World of Warcraft}}.",
+        "I am also a big {{game|Star Citizen}} enthusiast since its Kickstarter, and I have followed every CitizenCon."
+      ]
+    }
+  };
+
   const TIMELINE_DATA = {
     fr: [
-      { year: "2008", title: "Decouverte de la creation de jeux", description: ["Decouverte precoce du game design et du level design avec des outils accessibles.", "Premieres experimentations autour de la conception de niveaux et des mecaniques de jeu."], tech: ["FPS Creator", "RPG Maker"] },
-      { year: "2015", title: "Premiers pas en programmation", description: ["Modding Minecraft en Java et developpement web (HTML, CSS).", "Premiers systemes de jeu codes: deplacements, interactions, combat, points de vie et score."], tech: ["GameMaker", "Construct 2", "Java", "HTML", "CSS"] },
-      { year: "2016-2017", title: "Developpement de jeux sans moteur", description: ["Developpements de jeux complets en C (CSFML), C++ (Irrlicht) et JavaScript (Phaser).", "Generation procedurale avec le projet Rebirth et gestion de mondes 2D par chunks."], tech: ["SFML", "Phaser", "C++", "SDL", "CSFML", "C", "Irrlicht"] },
-      { year: "2018-2021", title: "Apprentissage et maitrise d'Unity", description: ["Prototypes axes generation procedurale: bruit de Perlin, Voronoi, mondes et biomes.", "Jeux complets en equipe en game jam et en studio, specialise en scripting C#, VFX et level design."], tech: ["Unity", "C#"] },
-      { year: "2022-2023", title: "Professionnalisation avec Unity", description: ["Developpement d'un simulateur 3D Airbus autour des MFD et du KCCU de l'A350.", "Travail en contexte pro sur architecture logicielle, design patterns avances et structuration de projets."], tech: ["Unity", "C#"] },
-      { year: "2023-2024", title: "Ouverture a d'autres moteurs de jeu", description: ["Transfert de competences Unity vers des projets de generation procedurale 3D.", "Exploration de Godot, GameMaker et Heaps.io avec focus sur generation procedurale."], tech: ["Unity", "Godot", "GameMaker", "Heaps.io", "C#"] },
-      { year: "2025-2026", title: "Developpement d'un moteur de jeu", description: ["Conception d'un moteur maison oriente innovation et generation de contenu assistee par IA.", "Architecture sur mesure d'abord basee sur MonoGame puis entierement en C# avec Avalonia pour le rendu."], tech: ["MonoGame", "C#", "Avalonia"] }
+      { year: "2008", title: "Découverte de la création de jeux", description: ["Découverte précoce du game design et du level design avec des outils accessibles.", "Premières expérimentations autour de la conception de niveaux et des mécaniques de jeu."], tech: ["FPS Creator", "RPG Maker"] },
+      { year: "2015", title: "Premiers pas en programmation", description: ["Modding Minecraft en Java et développement web (HTML, CSS).", "Premiers systèmes de jeu codés : déplacements, interactions, combat, points de vie et score."], tech: ["GameMaker", "Construct 2", "Java", "HTML", "CSS"] },
+      { year: "2016-2017", title: "Développement de jeux sans moteur", description: ["Développements de jeux complets en C (CSFML), C++ (Irrlicht) et JavaScript (Phaser).", "Génération procédurale avec le projet Rebirth et gestion de mondes 2D par chunks."], tech: ["SFML", "Phaser", "C++", "SDL", "CSFML", "C", "Irrlicht"] },
+      { year: "2018-2021", title: "Apprentissage et maîtrise d'Unity", description: ["Prototypes axés génération procédurale : bruit de Perlin, Voronoï, mondes et biomes.", "Jeux complets en équipe en game jam et en studio, spécialisé en scripting C#, VFX et level design."], tech: ["Unity", "C#"] },
+      { year: "2022-2023", title: "Professionnalisation avec Unity", description: ["Développement d'un simulateur 3D Airbus autour des MFD et du KCCU de l'A350.", "Travail en contexte pro sur l'architecture logicielle, les design patterns avancés et la structuration de projets."], tech: ["Unity", "C#"] },
+      { year: "2023-2024", title: "Ouverture à d'autres moteurs de jeu", description: ["Transfert de compétences Unity vers des projets de génération procédurale 3D.", "Exploration de Godot, GameMaker et Heaps.io avec un focus sur la génération procédurale."], tech: ["Unity", "Godot", "GameMaker", "Heaps.io", "C#"] },
+      { year: "2025-2026", title: "Développement d'un moteur de jeu", description: ["Conception d'un moteur maison orienté innovation et génération de contenu assistée par IA.", "Architecture sur mesure d'abord basée sur MonoGame puis entièrement en C# avec Avalonia pour le rendu."], tech: ["MonoGame", "C#", "Avalonia"] }
     ],
     en: [
       { year: "2008", title: "Discovery of game creation", description: ["Early discovery of game and level design with accessible tools.", "First experiments around level design and core game mechanics."], tech: ["FPS Creator", "RPG Maker"] },
@@ -197,6 +236,49 @@
     "2018-2021": ["https://www.youtube.com/watch?v=Imfw4LeQNlE", "https://www.youtube.com/watch?v=9RxU5nMuasY", "1.png", "2.png"],
     "2022-2023": ["1.png", "2.png", "3.png"],
     "2025-2026": ["1.png"]
+  };
+
+  const DOWNLOAD_GAMES_DATA = {
+    fr: [
+      {
+        id: "rebirth",
+        title: "Rebirth",
+        subtitle: "Jeu infini",
+        image: "./assets/images/Downloads/rebirth_proto.png",
+        imageAlt: "Aperçu du projet Rebirth",
+        description: [
+          "Rebirth est un prototype de jeu vidéo dont l’objectif est de démontrer la faisabilité d’un jeu réellement infini.",
+          "La génération procédurale a ses limites. Rebirth les dépasse en intégrant une IA locale (via Ollama) qui génère en continu le monde, les quêtes, les ennemis et les objets.",
+          "L’objectif n’est pas de produire du contenu aléatoire, mais de maintenir une cohérence globale. Le game design fixe les règles, et l’architecture encadre la génération."
+        ],
+        warning: "Rebirth n'utilise et n'utilisera jamais de l'art ou de la musique générés par IA.",
+        status: "En cours",
+        lastUpdate: "Mars 2026",
+        cta: "Téléchargement",
+        ctaDisabled: true,
+        availabilityNote: "BETA SEPTEMBRE 2026"
+      }
+    ],
+    en: [
+      {
+        id: "rebirth",
+        title: "Rebirth",
+        subtitle: "Infinite video game",
+        image: "./assets/images/Downloads/rebirth_proto.png",
+        imageAlt: "Rebirth project preview",
+        description: [
+          "Rebirth is a video game prototype whose goal is to demonstrate the feasibility of a truly infinite game.",
+          "Procedural generation has its limits. Rebirth goes beyond them by integrating local AI (via Ollama) that continuously generates the world, quests, enemies, and items.",
+          "The goal is not to produce random content, but to maintain overall coherence. The game design defines the rules, and the architecture frames the generation."
+        ],
+        warning: "Rebirth does not use and will never use AI-generated art or music.",
+        status: "In progress",
+        lastUpdate: "March 2026",
+        cta: "Download",
+        ctaDisabled: true,
+        availabilityNote: "BETA September 2026"
+      }
+    ]
   };
 
   function clearElement(element) { element.replaceChildren(); }
@@ -269,6 +351,123 @@
       });
       container.appendChild(categoryElement);
     });
+  }
+
+  function renderPresentation(container, lang) {
+    const content = PRESENTATION_DATA[lang] || PRESENTATION_DATA.fr;
+    clearElement(container);
+
+    function appendHighlightedText(element, text) {
+      const parts = String(text).split(/(\{\{(?:edu|pro|game)\|.*?\}\})/);
+      parts.forEach((part) => {
+        if (!part) return;
+        const match = part.match(/^\{\{(edu|pro|game)\|(.*)\}\}$/);
+        if (match) {
+          element.appendChild(makeElement("span", "presentation-highlight presentation-highlight-" + match[1], match[2]));
+        } else {
+          element.appendChild(document.createTextNode(part));
+        }
+      });
+    }
+
+    function appendHighlightedParagraph(parent, text) {
+      const paragraph = makeElement("p", "presentation-paragraph");
+      appendHighlightedText(paragraph, text);
+      parent.appendChild(paragraph);
+    }
+
+    const detailsBlock = makeElement("section", "presentation-block");
+    const title = makeElement("h3", "presentation-title");
+    appendHighlightedText(title, content.detailsTitle);
+    detailsBlock.appendChild(title);
+    content.details.forEach((paragraph) => {
+      appendHighlightedParagraph(detailsBlock, paragraph);
+    });
+
+    container.appendChild(detailsBlock);
+  }
+
+  function renderDownloads(container, lang) {
+    const items = DOWNLOAD_GAMES_DATA[lang] || DOWNLOAD_GAMES_DATA.fr;
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.fr;
+    clearElement(container);
+
+    if (!items.length) {
+      const emptyState = makeElement("div", "downloads-state");
+      emptyState.appendChild(makeElement("p", "presentation-paragraph", dict["downloads-empty"]));
+      emptyState.appendChild(makeElement("p", "presentation-paragraph", dict["downloads-empty-note"]));
+      container.appendChild(emptyState);
+      return;
+    }
+
+    const layout = makeElement("div", "downloads-layout");
+    const sidebarCard = makeElement("aside", "downloads-sidebar-card");
+    const sidebarHeader = makeElement("div", "downloads-sidebar-header", dict["downloads-nav-title"]);
+    const sidebar = makeElement("div", "downloads-sidebar");
+    const panel = makeElement("article", "download-card download-panel");
+
+    function renderProject(item) {
+      clearElement(panel);
+      const media = makeElement("div", "download-media");
+      const image = document.createElement("img");
+      image.className = "download-image";
+      image.src = item.image;
+      image.alt = item.imageAlt || item.title;
+      media.appendChild(image);
+
+      const body = makeElement("div", "download-body");
+      body.appendChild(makeElement("h3", "download-title", item.title));
+      if (item.subtitle) body.appendChild(makeElement("div", "download-subtitle", item.subtitle));
+
+      body.appendChild(makeElement("h4", "download-section-title", dict["downloads-overview-title"]));
+      item.description.forEach((paragraph) => {
+        body.appendChild(makeElement("p", "download-description", paragraph));
+      });
+      if (item.ctaDisabled) {
+        const disabledButton = makeElement("button", "download-link download-link-disabled", item.cta || "Download");
+        disabledButton.type = "button";
+        disabledButton.disabled = true;
+        body.appendChild(disabledButton);
+        if (item.availabilityNote) {
+          body.appendChild(makeElement("p", "download-availability", item.availabilityNote));
+        }
+      } else if (item.url) {
+        const link = makeElement("a", "download-link", item.cta || "Download");
+        link.href = item.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        body.appendChild(link);
+      }
+      if (item.warning) {
+        body.appendChild(makeElement("p", "download-warning", item.warning));
+      }
+      panel.appendChild(media);
+      panel.appendChild(body);
+    }
+
+    items.forEach((item, index) => {
+      const button = makeElement("button", "download-nav-btn" + (index === 0 ? " active" : ""));
+      button.type = "button";
+      const buttonTitle = makeElement("span", "download-nav-title", item.title);
+      const buttonSubtitle = makeElement("span", "download-nav-subtitle", item.subtitle);
+      const buttonMeta = makeElement("span", "download-nav-meta", item.status);
+      button.appendChild(buttonTitle);
+      button.appendChild(buttonSubtitle);
+      button.appendChild(buttonMeta);
+      button.addEventListener("click", () => {
+        sidebar.querySelectorAll(".download-nav-btn").forEach((el) => el.classList.remove("active"));
+        button.classList.add("active");
+        renderProject(item);
+      });
+      sidebar.appendChild(button);
+    });
+
+    renderProject(items[0]);
+    sidebarCard.appendChild(sidebarHeader);
+    sidebarCard.appendChild(sidebar);
+    layout.appendChild(sidebarCard);
+    layout.appendChild(panel);
+    container.appendChild(layout);
   }
 
   function initTabs() {
@@ -573,8 +772,10 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    const presentationContainer = document.getElementById("presentation-container");
     const skillsContainer = document.getElementById("skills-container");
     const timelineContainer = document.getElementById("timeline-container");
+    const downloadsContainer = document.getElementById("downloads-container");
     const detailsCard = document.getElementById("timeline-details");
     const detailsYear = document.getElementById("details-year");
     const detailsTitle = document.getElementById("details-title");
@@ -585,7 +786,7 @@
     const galleryThumbnails = document.getElementById("gallery-thumbnails");
     const particlesCanvas = document.getElementById("particles-canvas");
 
-    const required = [skillsContainer, timelineContainer, detailsCard, detailsYear, detailsTitle, detailsDesc, detailsTech, galleryMainMedia, galleryPlaceholder, galleryThumbnails];
+    const required = [presentationContainer, skillsContainer, timelineContainer, downloadsContainer, detailsCard, detailsYear, detailsTitle, detailsDesc, detailsTech, galleryMainMedia, galleryPlaceholder, galleryThumbnails];
     if (required.some((el) => !el)) return;
 
     const timeline = createTimelineController({
@@ -605,8 +806,10 @@
       persistLanguage(safeLang);
       translatePage(safeLang);
       updateLanguageButtons(safeLang);
+      renderPresentation(presentationContainer, safeLang);
       renderSkills(skillsContainer, safeLang);
       timeline.render(safeLang);
+      renderDownloads(downloadsContainer, safeLang);
     }
 
     const initialLanguage = getInitialLanguage();
