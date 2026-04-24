@@ -2,7 +2,9 @@
   "use strict";
 
   const SUPPORTED_LANGUAGES = ["fr", "en"];
-  const DEFAULT_LANGUAGE = "fr";
+  const DEFAULT_LANGUAGE = "en";
+  const LANGUAGE_STORAGE_KEY = "language";
+  const LANGUAGE_PREFERENCE_STORAGE_KEY = "language-preference-set";
 
   const TRANSLATIONS = {
     fr: {
@@ -301,11 +303,19 @@
     return SUPPORTED_LANGUAGES.indexOf(rawValue) !== -1 ? rawValue : DEFAULT_LANGUAGE;
   }
   function getInitialLanguage() {
-    try { return getValidatedLanguage(localStorage.getItem("language")); }
+    try {
+      const storedLanguage = getValidatedLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY));
+      const hasExplicitPreference = localStorage.getItem(LANGUAGE_PREFERENCE_STORAGE_KEY) === "true";
+      if (hasExplicitPreference) return storedLanguage;
+      return storedLanguage === "en" ? "en" : DEFAULT_LANGUAGE;
+    }
     catch (_e) { return DEFAULT_LANGUAGE; }
   }
   function persistLanguage(lang) {
-    try { localStorage.setItem("language", lang); } catch (_e) {}
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+      localStorage.setItem(LANGUAGE_PREFERENCE_STORAGE_KEY, "true");
+    } catch (_e) {}
   }
   function updateLanguageButtons(lang) {
     document.querySelectorAll(".lang-btn").forEach((btn) => {
@@ -530,7 +540,7 @@
   }
 
   function createTimelineController(elements) {
-    let currentLang = "fr";
+    let currentLang = DEFAULT_LANGUAGE;
     let currentItems = [];
     let activeIndex = -1;
 
@@ -801,9 +811,9 @@
       galleryThumbnails
     });
 
-    function applyLanguage(language) {
+    function applyLanguage(language, rememberPreference) {
       const safeLang = getValidatedLanguage(language);
-      persistLanguage(safeLang);
+      if (rememberPreference) persistLanguage(safeLang);
       translatePage(safeLang);
       updateLanguageButtons(safeLang);
       renderPresentation(presentationContainer, safeLang);
@@ -817,7 +827,7 @@
 
     document.querySelectorAll(".lang-btn").forEach((button) => {
       button.addEventListener("click", function () {
-        applyLanguage(button.getAttribute("data-lang"));
+        applyLanguage(button.getAttribute("data-lang"), true);
       });
     });
 
