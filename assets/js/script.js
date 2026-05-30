@@ -214,7 +214,7 @@
     fr: [
       { year: "2008", title: "Découverte de la création de jeux", description: ["Découverte précoce du game design et du level design avec des outils accessibles.", "Premières expérimentations autour de la conception de niveaux et des mécaniques de jeu."], tech: ["FPS Creator", "RPG Maker"] },
       { year: "2015", title: "Premiers pas en programmation", description: ["Modding Minecraft en Java et développement web (HTML, CSS).", "Premiers systèmes de jeu codés : déplacements, interactions, combat, points de vie et score."], tech: ["GameMaker", "Construct 2", "Java", "HTML", "CSS"] },
-      { year: "2016-2017", title: "Développement de jeux sans moteur", description: ["Développements de jeux complets en C (CSFML), C++ (Irrlicht) et JavaScript (Phaser).", "Génération procédurale avec le projet Rebirth et gestion de mondes 2D par chunks."], tech: ["SFML", "Phaser", "C++", "SDL", "CSFML", "C", "Irrlicht"] },
+      { year: "2016-2017", title: "Développement de jeux sans moteur", description: ["Développements de jeux complets en C (CSFML), C++ (Irrlicht) et JavaScript (Phaser).", "Génération procédurale avec le projet Minux et gestion de mondes 2D par chunks."], tech: ["SFML", "Phaser", "C++", "SDL", "CSFML", "C", "Irrlicht"] },
       { year: "2018-2021", title: "Apprentissage et maîtrise d'Unity", description: ["Prototypes axés génération procédurale : bruit de Perlin, Voronoï, mondes et biomes.", "Jeux complets en équipe en game jam et en studio, spécialisé en scripting C#, VFX et level design."], tech: ["Unity", "C#"] },
       { year: "2022-2023", title: "Professionnalisation avec Unity", description: ["Développement d'un simulateur 3D Airbus autour des MFD et du KCCU de l'A350.", "Travail en contexte pro sur l'architecture logicielle, les design patterns avancés et la structuration de projets."], tech: ["Unity", "C#"] },
       { year: "2023-2024", title: "Ouverture à d'autres moteurs de jeu", description: ["Transfert de compétences Unity vers des projets de génération procédurale 3D.", "Exploration de Godot, GameMaker et Heaps.io avec un focus sur la génération procédurale."], tech: ["Unity", "Godot", "GameMaker", "Heaps.io", "C#"] },
@@ -223,7 +223,7 @@
     en: [
       { year: "2008", title: "Discovery of game creation", description: ["Early discovery of game and level design with accessible tools.", "First experiments around level design and core game mechanics."], tech: ["FPS Creator", "RPG Maker"] },
       { year: "2015", title: "First steps in programming", description: ["Minecraft modding in Java and web development (HTML, CSS).", "Started coding basic game systems: movement, interactions, combat, health and score."], tech: ["GameMaker", "Construct 2", "Java", "HTML", "CSS"] },
-      { year: "2016-2017", title: "Game development without an engine", description: ["First complete game projects in C (CSFML), C++ (Irrlicht) and JavaScript (Phaser).", "Procedural generation with Rebirth and early 2D chunk world systems."], tech: ["SFML", "Phaser", "C++", "SDL", "CSFML", "C", "Irrlicht"] },
+      { year: "2016-2017", title: "Game development without an engine", description: ["First complete game projects in C (CSFML), C++ (Irrlicht) and JavaScript (Phaser).", "Procedural generation with Minux and early 2D chunk world systems."], tech: ["SFML", "Phaser", "C++", "SDL", "CSFML", "C", "Irrlicht"] },
       { year: "2018-2021", title: "Learning and mastery of Unity", description: ["Unity prototypes focused on procedural generation: Perlin noise, Voronoi, worlds and biomes.", "Full game projects in teams, game jams and studio work with focus on C# scripting, VFX and level design."], tech: ["Unity", "C#"] },
       { year: "2022-2023", title: "Professionalization with Unity", description: ["Team development of a 3D Airbus simulator around A350 MFD and KCCU systems.", "Professional Unity work around architecture, advanced design patterns and project structure."], tech: ["Unity", "C#"] },
       { year: "2023-2024", title: "Opening up to other game engines", description: ["Applied Unity skills to 3D procedural generation projects.", "Explored Godot, GameMaker and Heaps.io while keeping procedural generation as core focus."], tech: ["Unity", "Godot", "GameMaker", "Heaps.io", "C#"] },
@@ -243,17 +243,17 @@
   const DOWNLOAD_GAMES_DATA = {
     fr: [
       {
-        id: "rebirth",
-        title: "Rebirth",
+        id: "minux",
+        title: "Minux",
         subtitle: "Jeu infini",
-        image: "./assets/images/Downloads/rebirth_proto.png",
-        imageAlt: "Aperçu du projet Rebirth",
+        image: "./assets/images/Downloads/minux_proto.png",
+        imageAlt: "Aperçu du projet Minux",
         description: [
-          "Rebirth est un prototype de jeu vidéo dont l’objectif est de démontrer la faisabilité d’un jeu réellement infini.",
-          "La génération procédurale a ses limites. Rebirth les dépasse en intégrant une IA locale (via Ollama) qui génère en continu le monde, les quêtes, les ennemis et les objets.",
+          "Minux est un prototype de jeu vidéo dont l’objectif est de démontrer la faisabilité d’un jeu réellement infini.",
+          "La génération procédurale a ses limites. Minux les dépasse en intégrant une IA locale (via Ollama) qui génère en continu le monde, les quêtes, les ennemis et les objets.",
           "L’objectif n’est pas de produire du contenu aléatoire, mais de maintenir une cohérence globale. Le game design fixe les règles, et l’architecture encadre la génération."
         ],
-        warning: "Rebirth n'utilise et n'utilisera jamais de l'art ou de la musique générés par IA.",
+        warning: "Minux n'utilise et n'utilisera jamais de l'art ou de la musique générés par IA.",
         status: "En cours",
         lastUpdate: "Mars 2026",
         cta: "Téléchargement",
@@ -263,17 +263,17 @@
     ],
     en: [
       {
-        id: "rebirth",
-        title: "Rebirth",
+        id: "minux",
+        title: "Minux",
         subtitle: "Infinite video game",
-        image: "./assets/images/Downloads/rebirth_proto.png",
-        imageAlt: "Rebirth project preview",
+        image: "./assets/images/Downloads/minux_proto.png",
+        imageAlt: "Minux project preview",
         description: [
-          "Rebirth is a video game prototype whose goal is to demonstrate the feasibility of a truly infinite game.",
-          "Procedural generation has its limits. Rebirth goes beyond them by integrating local AI (via Ollama) that continuously generates the world, quests, enemies, and items.",
+          "Minux is a video game prototype whose goal is to demonstrate the feasibility of a truly infinite game.",
+          "Procedural generation has its limits. Minux goes beyond them by integrating local AI (via Ollama) that continuously generates the world, quests, enemies, and items.",
           "The goal is not to produce random content, but to maintain overall coherence. The game design defines the rules, and the architecture frames the generation."
         ],
-        warning: "Rebirth does not use and will never use AI-generated art or music.",
+        warning: "Minux does not use and will never use AI-generated art or music.",
         status: "In progress",
         lastUpdate: "March 2026",
         cta: "Download",
