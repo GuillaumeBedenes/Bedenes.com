@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --accent-cyan: #00ffff;
+    --accent-red: #ff0000;
+}
+
 body {
     font-family: 'DejaVu Sans Mono', 'Liberation Mono', 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
     background-color: #000000;
@@ -337,13 +342,13 @@ body {
 }
 
 .presentation-highlight-edu {
-    color: #00ffff;
+    color: var(--accent-cyan);
     text-shadow: 0 0 6px rgba(0, 255, 255, 0.35);
 }
 
 .presentation-highlight-pro {
-    color: #ff4d4d;
-    text-shadow: 0 0 6px rgba(255, 77, 77, 0.3);
+    color: var(--accent-red);
+    text-shadow: 0 0 6px rgba(255, 0, 0, 0.3);
 }
 
 .presentation-highlight-game {
@@ -384,88 +389,72 @@ body {
 
 .skills-container {
     margin-top: 15px;
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
     width: 100%;
     box-sizing: border-box;
 }
 
 .skill-category {
-    margin-bottom: 0;
-    flex: 1 1 0;
     min-width: 0;
-    max-width: 50%;
-    box-sizing: border-box;
+    padding: 18px 20px 20px;
 }
 
-.category-title {
-    color: #ffffff;
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+.skill-category-ai {
+    --skill-accent: var(--accent-red);
+}
+
+.skill-category-stack {
+    --skill-accent: var(--accent-cyan);
+}
+
+.skill-command {
+    color: var(--skill-accent);
+    font-size: 0.92em;
+    font-weight: normal;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    overflow-wrap: anywhere;
 }
 
 .skill-section {
-    margin-bottom: 15px;
-    margin-left: 20px;
+    margin-bottom: 21px;
+}
+
+.skill-section:last-child {
+    margin-bottom: 0;
 }
 
 .section-title {
-    color: #00ff00;
-    font-size: 0.95em;
-    margin-bottom: 8px;
-    font-weight: normal;
+    color: #ffffff;
+    font-size: 0.88em;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 2px solid var(--skill-accent);
+    font-weight: bold;
+    line-height: 1.45;
 }
 
 .skill-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 0;
-    margin-left: 20px;
+    align-items: baseline;
+    gap: 10px;
+    padding: 3px 0 3px 12px;
     color: #cccccc;
     font-size: 0.9em;
+    line-height: 1.45;
+}
+
+.skill-prompt {
+    color: #00ff00;
+    flex: 0 0 auto;
 }
 
 .skill-name {
-    flex: 1;
-}
-
-.skill-level {
-    margin-left: 15px;
-    width: 12px;
-    height: 12px;
-    display: inline-block;
-    cursor: help;
-    position: relative;
-    flex-shrink: 0;
-}
-
-.skill-level.level-1 {
-    background-color: #00ff00;
-    border-radius: 3px;
-    border: 1px solid #00ff00;
-    box-shadow: 0 0 5px #00ff00;
-}
-
-.skill-level.level-2 {
-    background-color: #00ffff;
-    border-radius: 3px;
-    border: 1px solid #00ffff;
-    box-shadow: 0 0 5px #00ffff;
-}
-
-.skill-level.level-3 {
-    background-color: #ff0000;
-    border-radius: 3px;
-    border: 1px solid #ff0000;
-    box-shadow: 0 0 5px #ff0000;
-}
-
-.skill-level.native {
-    color: #ffffff;
-    font-size: 0.85em;
+    min-width: 0;
 }
 
 @keyframes terminal-flicker {
@@ -686,7 +675,7 @@ body {
 }
 
 .timeline-tech-label {
-    color: #00ffff;
+    color: var(--accent-cyan);
     font-size: 0.9em;
     font-weight: bold;
     margin-bottom: 10px;
@@ -709,14 +698,14 @@ body {
     text-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
     transition: all 0.3s ease;
     background-color: rgba(0, 255, 255, 0.1);
-    border: 1px solid #00ffff;
-    color: #00ffff;
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
     box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
 }
 
 .timeline-tech-tag:hover {
     background-color: rgba(0, 255, 255, 0.2);
-    border-color: #00ffff;
+    border-color: var(--accent-cyan);
     box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
 }
 
@@ -833,7 +822,7 @@ body {
 }
 
 .gallery-youtube-link:hover {
-    background-color: #cc0000;
+    background-color: var(--accent-red);
     color: #fff;
 }
 
@@ -881,7 +870,7 @@ body {
     overflow-y: hidden;
     padding: 10px 5px;
     scrollbar-width: thin;
-    scrollbar-color: #00ffff #000000;
+    scrollbar-color: var(--accent-cyan) #000000;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -895,8 +884,8 @@ body {
 }
 
 .gallery-thumbnails::-webkit-scrollbar-thumb {
-    background: #00ffff;
-    border: 1px solid #00ffff;
+    background: var(--accent-cyan);
+    border: 1px solid var(--accent-cyan);
 }
 
 .gallery-thumbnails::-webkit-scrollbar-thumb:hover {
@@ -926,7 +915,7 @@ body {
 }
 
 .gallery-thumbnail:hover {
-    border-color: #00ffff;
+    border-color: var(--accent-cyan);
     box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
     transform: scale(1.1);
 }
@@ -1116,15 +1105,15 @@ body {
 }
 
 .download-warning {
-    color: #ff4d4d;
+    color: var(--accent-red);
     line-height: 1.6;
     margin-top: 18px;
     padding-top: 14px;
-    border-top: 1px solid rgba(255, 77, 77, 0.35);
+    border-top: 1px solid rgba(255, 0, 0, 0.35);
 }
 
 .download-meta {
-    color: #00ffff;
+    color: var(--accent-cyan);
     font-size: 0.9em;
     margin-bottom: 14px;
 }
@@ -1154,7 +1143,7 @@ body {
 }
 
 .download-availability {
-    color: #ffd84d;
+    color: var(--accent-cyan);
     font-size: 0.9em;
     margin-top: 10px;
     text-transform: uppercase;
@@ -1206,7 +1195,7 @@ body {
     }
     
     .skills-container {
-        flex-direction: column !important;
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
@@ -1220,12 +1209,6 @@ body {
 
     .downloads-sidebar-card {
         overflow: hidden;
-    }
-    
-    .skill-category {
-        flex: 1 1 auto !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
     }
     
     /* Timeline verticale sur mobile */

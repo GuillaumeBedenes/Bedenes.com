@@ -10,14 +10,13 @@
     fr: {
       name: "Guillaume BEDENES",
       email: "guillaume.bedenes@epitech.eu",
-      bio: "Ingénieur logiciel\nDéveloppement de logiciels, de jeux et de systèmes complexes.",
+      bio: "Ingénieur logiciel et IA\nConception de logiciels, de jeux et de systèmes complexes.",
       "cv-button": "CV",
       "tab-presentation": "Présentation",
       "tab-skills": "Compétences",
       "tab-timeline": "Parcours Game Dev",
       "tab-downloads": "Téléchargement",
       "presentation-command": "$ cat presentation.txt",
-      "skills-command": "$ cat skills.txt",
       "timeline-command": "$ cat timeline.txt",
       "downloads-command": "$ ls ./downloads",
       "downloads-nav-title": "Projets",
@@ -32,14 +31,13 @@
     en: {
       name: "Guillaume BEDENES",
       email: "guillaume.bedenes@epitech.eu",
-      bio: "Software Engineer\nDevelopment of software, games and complex systems.",
+      bio: "Software & AI Engineer\nBuilding software, games and complex systems.",
       "cv-button": "CV",
       "tab-presentation": "Presentation",
       "tab-skills": "Skills",
       "tab-timeline": "Game Dev Timeline",
       "tab-downloads": "Downloads",
       "presentation-command": "$ cat presentation.txt",
-      "skills-command": "$ cat skills.txt",
       "timeline-command": "$ cat timeline.txt",
       "downloads-command": "$ ls ./downloads",
       "downloads-nav-title": "Projects",
@@ -53,141 +51,48 @@
     }
   };
 
-  const LEVEL_TOOLTIPS = {
-    "level-1": {
-      fr: "Base acquise - Je connais les concepts et je peux reprendre du code.",
-      en: "Basic level - I know the concepts and can take over code."
+  const SKILLS_DATA = [
+    {
+      command: "$ cat ai.txt",
+      type: "ai",
+      sections: [
+        {
+          title: "AGENT ENGINEERING",
+          items: ["Agentic AI", "Multi-Agent Orchestration", "Agent Architecture", "Agent Skills", "Agent Protocols"]
+        },
+        {
+          title: "ENGINEERING LAYERS",
+          items: ["Context Engineering", "Harness Engineering", "Loop Engineering", "Graph Engineering", "Prompt Engineering"]
+        },
+        {
+          title: "KNOWLEDGE & RELIABILITY",
+          items: ["RAG / Agentic RAG", "Memory Architecture", "Evaluation & Evals", "Observability", "Guardrails"]
+        },
+        {
+          title: "AGENTIC SOFTWARE DEVELOPMENT",
+          items: ["Coding Agent Orchestration", "Repository Context Engineering", "Parallel Agent Workflows", "Automated Verification", "AI-assisted SDLC"]
+        }
+      ]
     },
-    "level-2": {
-      fr: "Bon niveau - Utilisé régulièrement, autonome sur des sujets non triviaux.",
-      en: "Good level - Used regularly, autonomous on non-trivial topics."
-    },
-    "level-3": {
-      fr: "Maîtrise professionnelle - Utilisé en production sur des projets réels.",
-      en: "Professional mastery - Used in production on real projects."
+    {
+      command: "$ cat stack.txt",
+      type: "stack",
+      sections: [
+        {
+          title: "AI TOOLS",
+          items: ["Hermes", "Claude Code", "OpenAI Codex", "OpenClaw", "GitHub Copilot", "Obsidian"]
+        },
+        {
+          title: "Languages",
+          items: ["C#", "C", "C++", "Python", "SQL", "JavaScript"]
+        },
+        {
+          title: "Frameworks & technologies",
+          items: ["Unity", "WPF", "UWP", "WinDev", "SFML", "MonoGame"]
+        }
+      ]
     }
-  };
-
-  const SKILLS_DATA = {
-    fr: [
-      {
-        title: "Programming",
-        sections: [
-          {
-            title: "Langages",
-            items: [
-              { name: "C#", level: "level-3" },
-              { name: "C", level: "level-2" },
-              { name: "C++", level: "level-2" },
-              { name: "Python", level: "level-2" },
-              { name: "SQL", level: "level-2" },
-              { name: "JavaScript", level: "level-1" }
-            ]
-          },
-          {
-            title: "Frameworks & technologies",
-            items: [
-              { name: "Unity", level: "level-3" },
-              { name: "WPF", level: "level-3" },
-              { name: "UWP", level: "level-3" },
-              { name: "WinDev", level: "level-2" },
-              { name: "SFML", level: "level-2" },
-              { name: "Monogame", level: "level-2" }
-            ]
-          }
-        ]
-      },
-      {
-        title: "Environnements & outils",
-        sections: [
-          {
-            title: "Systèmes",
-            items: [
-              { name: "Windows", level: "level-3" },
-              { name: "Linux (Arch Linux, i3wm)", level: "level-2" }
-            ]
-          },
-          {
-            title: "Outils de gestion de projet",
-            items: [
-              { name: "Obsidian", level: "level-2" },
-              { name: "Git", level: "level-2" },
-              { name: "GitLab", level: "level-1" },
-              { name: "Azure DevOps", level: "level-1" }
-            ]
-          },
-          {
-            title: "Outils d'édition",
-            items: [
-              { name: "Visual Studio", level: "level-3" },
-              { name: "Emacs", level: "level-2" },
-              { name: "Vim", level: "level-1" },
-              { name: "Nano", level: "level-1" }
-            ]
-          }
-        ]
-      }
-    ],
-    en: [
-      {
-        title: "Programming",
-        sections: [
-          {
-            title: "Languages",
-            items: [
-              { name: "C#", level: "level-3" },
-              { name: "C", level: "level-2" },
-              { name: "C++", level: "level-2" },
-              { name: "Python", level: "level-2" },
-              { name: "SQL", level: "level-2" },
-              { name: "JavaScript", level: "level-1" }
-            ]
-          },
-          {
-            title: "Frameworks & technologies",
-            items: [
-              { name: "Unity", level: "level-3" },
-              { name: "WPF", level: "level-3" },
-              { name: "UWP", level: "level-3" },
-              { name: "WinDev", level: "level-2" },
-              { name: "SFML", level: "level-2" },
-              { name: "Monogame", level: "level-2" }
-            ]
-          }
-        ]
-      },
-      {
-        title: "Environments & tools",
-        sections: [
-          {
-            title: "Systems",
-            items: [
-              { name: "Windows", level: "level-3" },
-              { name: "Linux (Arch Linux, i3wm)", level: "level-2" }
-            ]
-          },
-          {
-            title: "Project management tools",
-            items: [
-              { name: "Obsidian", level: "level-2" },
-              { name: "Git", level: "level-2" },
-              { name: "GitLab", level: "level-1" },
-              { name: "Azure DevOps", level: "level-1" }
-            ]
-          },
-          {
-            title: "Editing tools",
-            items: [
-              { name: "Visual Studio", level: "level-3" },
-              { name: "Emacs", level: "level-2" },
-              { name: "Vim", level: "level-1" },
-              { name: "Nano", level: "level-1" }
-            ]
-          }
-        ]
-      }
-    ]
-  };
+  ];
 
   const PRESENTATION_DATA = {
     fr: {
@@ -246,7 +151,7 @@
         id: "minux",
         title: "Minux",
         subtitle: "Jeu infini",
-        image: "./assets/images/Downloads/minux_proto.png",
+        image: "./assets/images/Downloads/minux_preview.png",
         imageAlt: "Aperçu du projet Minux",
         description: [
           "Minux est un prototype de jeu vidéo dont l’objectif est de démontrer la faisabilité d’un jeu réellement infini.",
@@ -258,7 +163,7 @@
         lastUpdate: "Mars 2026",
         cta: "Téléchargement",
         ctaDisabled: true,
-        availabilityNote: "BETA SEPTEMBRE 2026"
+        availabilityNote: "PHASE 1 • 2027"
       }
     ],
     en: [
@@ -266,7 +171,7 @@
         id: "minux",
         title: "Minux",
         subtitle: "Infinite video game",
-        image: "./assets/images/Downloads/minux_proto.png",
+        image: "./assets/images/Downloads/minux_preview.png",
         imageAlt: "Minux project preview",
         description: [
           "Minux is a video game prototype whose goal is to demonstrate the feasibility of a truly infinite game.",
@@ -278,7 +183,7 @@
         lastUpdate: "March 2026",
         cta: "Download",
         ctaDisabled: true,
-        availabilityNote: "BETA September 2026"
+        availabilityNote: "PHASE 1 • 2027"
       }
     ]
   };
@@ -339,22 +244,18 @@
     });
   }
 
-  function renderSkills(container, lang) {
-    const categories = SKILLS_DATA[lang] || SKILLS_DATA.fr;
+  function renderSkills(container) {
     clearElement(container);
-    categories.forEach((category) => {
-      const categoryElement = makeElement("div", "skill-category");
-      categoryElement.appendChild(makeElement("h3", "category-title", category.title));
+    SKILLS_DATA.forEach((category) => {
+      const categoryElement = makeElement("section", "skill-category skill-category-" + category.type);
+      categoryElement.appendChild(makeElement("h3", "skill-command", category.command));
       category.sections.forEach((section) => {
-        const sectionEl = makeElement("div", "skill-section");
+        const sectionEl = makeElement("section", "skill-section");
         sectionEl.appendChild(makeElement("h4", "section-title", section.title));
         section.items.forEach((item) => {
           const itemEl = makeElement("div", "skill-item");
-          itemEl.appendChild(makeElement("span", "skill-name", item.name));
-          const levelEl = makeElement("span", "skill-level " + item.level);
-          levelEl.title = LEVEL_TOOLTIPS[item.level][lang];
-          levelEl.setAttribute("aria-label", item.level);
-          itemEl.appendChild(levelEl);
+          itemEl.appendChild(makeElement("span", "skill-prompt", ">"));
+          itemEl.appendChild(makeElement("span", "skill-name", item));
           sectionEl.appendChild(itemEl);
         });
         categoryElement.appendChild(sectionEl);
@@ -817,7 +718,7 @@
       translatePage(safeLang);
       updateLanguageButtons(safeLang);
       renderPresentation(presentationContainer, safeLang);
-      renderSkills(skillsContainer, safeLang);
+      renderSkills(skillsContainer);
       timeline.render(safeLang);
       renderDownloads(downloadsContainer, safeLang);
     }
