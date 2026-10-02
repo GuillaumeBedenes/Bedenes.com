@@ -242,8 +242,7 @@ body {
 
 /* Contenu des onglets */
 .tab-content {
-    padding: 20px;
-    min-height: 400px;
+    padding: 0;
 }
 
 .tab-pane {
@@ -256,11 +255,11 @@ body {
 
 .terminal-window {
     background-color: #000000;
-    border: 1px solid #ffffff;
+    border: none;
     padding: 20px;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
     position: relative;
     width: 100%;
+    min-height: 400px;
     box-sizing: border-box;
     overflow: hidden;
 }
