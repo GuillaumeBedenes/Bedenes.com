@@ -56,19 +56,19 @@
       sections: [
         {
           title: "AGENT ENGINEERING",
-          items: ["Agentic AI", "Multi-Agent Orchestration", "Agent Architecture", "Agent Skills", "Agent Protocols"]
+          items: ["AI Agents", "Multi-Agent Systems", "Agent Orchestration", "Agent Skills & Tools"]
         },
         {
-          title: "ENGINEERING LAYERS",
-          items: ["Context Engineering", "Harness Engineering", "Loop Engineering", "Graph Engineering", "Prompt Engineering"]
+          title: "CONTEXT & PROMPTS",
+          items: ["Prompt Engineering", "Context Engineering", "Memory & Knowledge Bases", "MCP (Model Context Protocol)"]
         },
         {
-          title: "KNOWLEDGE & RELIABILITY",
-          items: ["RAG / Agentic RAG", "Memory Architecture", "Evaluation & Evals", "Observability", "Guardrails"]
+          title: "RELIABILITY",
+          items: ["RAG", "Evaluation (Evals)", "Guardrails", "Human-in-the-loop"]
         },
         {
-          title: "AGENTIC SOFTWARE DEVELOPMENT",
-          items: ["Coding Agent Orchestration", "Repository Context Engineering", "Parallel Agent Workflows", "Automated Verification", "AI-assisted SDLC"]
+          title: "AI-POWERED DEVELOPMENT",
+          items: ["Coding Agents", "Parallel Agent Workflows", "Automated Code Review", "AI-assisted Software Development"]
         }
       ]
     },
