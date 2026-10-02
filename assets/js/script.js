@@ -244,9 +244,21 @@
 
   function renderSkills(container) {
     clearElement(container);
-    SKILLS_DATA.forEach((category) => {
+    SKILLS_DATA.forEach((category, index) => {
+      if (index > 0) {
+        const divider = makeElement("div", "skills-divider");
+        divider.setAttribute("aria-hidden", "true");
+        divider.appendChild(makeElement("pre", "skills-divider-vertical", "|\n".repeat(256)));
+        const horizontal = makeElement("div", "skills-divider-horizontal");
+        horizontal.appendChild(makeElement("span", "", "+"));
+        horizontal.appendChild(makeElement("span", "skills-divider-dashes", "-".repeat(256)));
+        horizontal.appendChild(makeElement("span", "", "+"));
+        divider.appendChild(horizontal);
+        container.appendChild(divider);
+      }
+      const column = makeElement("div", "skill-column skill-column-" + category.type);
+      column.appendChild(makeElement("h3", "skill-command", category.command));
       const categoryElement = makeElement("section", "skill-category skill-category-" + category.type);
-      categoryElement.appendChild(makeElement("h3", "skill-command", category.command));
       category.sections.forEach((section) => {
         const sectionEl = makeElement("section", "skill-section");
         sectionEl.appendChild(makeElement("h4", "section-title", section.title));
@@ -258,7 +270,8 @@
         });
         categoryElement.appendChild(sectionEl);
       });
-      container.appendChild(categoryElement);
+      column.appendChild(categoryElement);
+      container.appendChild(column);
     });
   }
 

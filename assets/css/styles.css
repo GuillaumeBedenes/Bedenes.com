@@ -387,12 +387,38 @@ body {
 }
 
 .skills-container {
-    margin-top: 15px;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
+    grid-template-columns: minmax(0, 1fr) 1ch minmax(0, 1fr);
+    gap: 12px;
     width: 100%;
     box-sizing: border-box;
+}
+
+.skill-column {
+    min-width: 0;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 15px;
+}
+
+.skills-divider {
+    position: relative;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.skills-divider-vertical {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    font: inherit;
+    text-align: center;
+}
+
+.skills-divider-horizontal {
+    display: none;
 }
 
 .skill-category {
@@ -403,11 +429,11 @@ body {
     padding: 18px 20px 20px;
 }
 
-.skill-category-ai {
+.skill-column-ai {
     --skill-accent: var(--accent-red);
 }
 
-.skill-category-stack {
+.skill-column-stack {
     --skill-accent: var(--accent-cyan);
 }
 
@@ -416,9 +442,7 @@ body {
     font-size: 0.92em;
     font-weight: normal;
     line-height: 1.5;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    margin: 0;
     overflow-wrap: anywhere;
 }
 
@@ -1196,7 +1220,26 @@ body {
     
     .skills-container {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 12px;
+    }
+
+    .skills-divider {
+        height: 1.5em;
+    }
+
+    .skills-divider-vertical {
+        display: none;
+    }
+
+    .skills-divider-horizontal {
+        display: flex;
+    }
+
+    .skills-divider-dashes {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     .presentation-container {
